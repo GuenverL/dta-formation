@@ -57,7 +57,7 @@ public class PizzeriaAdminConsoleApp {
 					
 				case 3:
 					for(String[] pizza : pizzas){
-						System.out.println(pizza[0]+" -> "+pizza[1]+" ("+pizza[2]+")");
+						System.out.println(pizza[0]+" - "+pizza[1]+" ("+pizza[2]+")");
 					}					
 					
 					System.out.println("Veuiller choisir la pizza à modifier.\n(99 pour abandonner).");		
@@ -80,7 +80,7 @@ public class PizzeriaAdminConsoleApp {
 				case 4:
 					String[][] nouvellesPizzas = new String[taille-1][3];
 					for(String[] pizza : pizzas){
-						System.out.println(pizza[0]+" -> "+pizza[1]+" ("+pizza[2]+")");
+						System.out.println(pizza[0]+" - "+pizza[1]+" ("+pizza[2]+")");
 					}					
 					
 					System.out.println("Veuiller choisir la pizza à supprimer.\n(99 pour abandonner).");		
@@ -94,7 +94,10 @@ public class PizzeriaAdminConsoleApp {
 					System.arraycopy(pizzas, indice+1, nouvellesPizzas, indice, taille-1-indice);
 					pizzas = nouvellesPizzas;
 					taille--;
-					break;					
+					break;	
+				default:	
+					break;
+					
 			}
 			
 			System.out.println("\n***** Pizzeria Administration *****");
@@ -106,14 +109,5 @@ public class PizzeriaAdminConsoleApp {
 			
 		}
 		sc.close();
-	}
-	
-	private static String[][] MajPizza(Scanner sc, String[][] pizzas){
-		sc.nextLine();
-			
-		
-		return pizzas;
-		
-	}
-	
+	}	
 }

@@ -20,17 +20,19 @@ public class Menu {
 
 	public void afficher() {
 		System.out.println("***** Pizzeria Administration *****");
+
 		for (Action action : actions) {
 			System.out.println((actions.indexOf(action) + 1) + ". " + action.getNom());
 		}
+
 		System.out.println("99. Sortir");
 	}
 
 	public void faire(int choix) {
-		if (choix >= this.actions.size()) {
+		if (choix > this.actions.size()) {
 			System.out.println("\nmauvais choix !!\n");
 		} else {
-		actions.get(choix - 1).faire();
+			actions.get(choix - 1).faire();
 		}
 	}
 }

@@ -3,6 +3,7 @@ package fr.pizzeria.ihm;
 import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
+import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.model.Pizza;
 
 public class ActionAjouterPizza extends Action {
@@ -24,7 +25,11 @@ public class ActionAjouterPizza extends Action {
 		System.out.println("Veuiller saisir le prix");
 		prix = sc.nextDouble();
 
-		dao.saveNewPizza(new Pizza(code, nom, prix));
+		try {
+			dao.saveNewPizza(new Pizza(code, nom, prix));
+		} catch (StockageException e) {
+			System.err.println("Problème lors de l'ajout de la nouvelle pizza");
+		}
 
 	}
 }

@@ -3,6 +3,7 @@ package fr.pizzeria.ihm;
 import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
+import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.model.Pizza;
 
 public class ActionSupprimerPizza extends Action {
@@ -23,7 +24,11 @@ public class ActionSupprimerPizza extends Action {
 
 		if (code.equals("99")) {
 
-		} else if (!dao.deletePizza(code))
-			System.out.println("\nCette pizza n'existe pas\n");
+		} else
+			try {
+				dao.deletePizza(code);
+			} catch (StockageException e) {
+				System.out.println("\nCette pizza n'existe pas\n");
+			}
 	}
 }

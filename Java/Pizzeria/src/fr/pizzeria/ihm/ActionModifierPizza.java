@@ -3,6 +3,7 @@ package fr.pizzeria.ihm;
 import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
+import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.model.Pizza;
 
 public class ActionModifierPizza extends Action {
@@ -28,8 +29,6 @@ public class ActionModifierPizza extends Action {
 		
 		if (oldCode.equals("99")) {
 			
-		}else if(dao.findPizza(oldCode) < 0) {
-			System.out.println("\nCette pizza n'existe pas\n");
 		} else {
 
 			System.out.println("Veuiller saisir le code");
@@ -39,7 +38,11 @@ public class ActionModifierPizza extends Action {
 			System.out.println("Veuiller saisir le prix");
 			prix = sc.nextDouble();
 
-			dao.updatePizza(oldCode, new Pizza(code, nom, prix));
+			try {
+				dao.updatePizza(oldCode, new Pizza(code, nom, prix));
+			} catch (StockageException e) {
+				System.out.println("\nCette pizza n'existe pas\n");
+			}
 		}
 	}
 }

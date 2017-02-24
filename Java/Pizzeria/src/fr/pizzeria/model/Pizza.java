@@ -1,14 +1,25 @@
 package fr.pizzeria.model;
 
-public class Pizza {
+import java.lang.reflect.Field;
 
-	private String code, nom;
+public class Pizza implements Comparable<Pizza> {
+
+	@ToString(uppercase = true)
+	private String code;
+
+	@ToString
+	private String nom;
+
+	@ToString
 	private double prix;
 
-	public Pizza(String code, String nom, double prix) {
+	private CategoriePizza categorie;
+
+	public Pizza(String code, String nom, double prix, CategoriePizza categorie) {
 		this.code = code;
 		this.nom = nom;
 		this.prix = prix;
+		this.categorie = categorie;
 	}
 
 	public String getCode() {
@@ -17,8 +28,29 @@ public class Pizza {
 
 	@Override
 	public String toString() {
-		return code + " - " + nom + " (" + prix + " €).";
+		StringBuilder sb = new StringBuilder();
+		for (Field field : this.getClass().getDeclaredFields()) {
+			ToString anno = field.getAnnotation(ToString.class);
+			if(anno!=null)
+				try {
+					sb.append(field.get(this).toString());
+					sb.append("  ");
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				}
+				
+		}
+		// return code + " - " + nom + " " + categorie + " " + " (" + prix + "
+		// €).";
+		return sb.toString();
 
+	}
+
+	@Override
+	public int compareTo(Pizza o) {
+		return this.code.compareTo(o.getCode());
 	}
 
 }

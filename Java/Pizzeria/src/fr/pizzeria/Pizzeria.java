@@ -1,33 +1,17 @@
 package fr.pizzeria;
 
-import java.util.Scanner;
-
-import fr.pizzeria.dao.IPizzaDao;
-import fr.pizzeria.dao.PizzaDaoImpl;
+import fr.pizzeria.ihm.IhmTools;
 import fr.pizzeria.ihm.Menu;
 
 public class Pizzeria {
 	public static void main(String args[]) {
 
-		IPizzaDao dao = new PizzaDaoImpl();
+		IhmTools ihmTools = new IhmTools();
 
-		Scanner sc = new Scanner(System.in);
-		Menu menu = new Menu(dao, sc);
-		menu.afficher();
+		Menu menu = new Menu(ihmTools);
 
+		menu.lancer();
 
-		int choix = sc.nextInt();
-		sc.nextLine();
-
-		while (choix != 99) {
-			menu.faire(choix);
-			menu.afficher();
-			choix = sc.nextInt();
-			sc.nextLine();
-		}
-
-		System.out.println("Adios");
-
-		sc.close();
+		ihmTools.getSc().close();
 	}
 }

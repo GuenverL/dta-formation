@@ -1,15 +1,13 @@
 package fr.pizzeria.ihm;
 
-import java.util.Scanner;
-
-import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.exception.StockageException;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class ActionModifierPizza extends Action {
 
-	public ActionModifierPizza(IPizzaDao dao, Scanner sc) {
-		super(dao, sc);
+	public ActionModifierPizza(IhmTools ihmTools) {
+		super(ihmTools);
 		this.nom = "Mettre à jour une Pizza";
 	}
 
@@ -19,27 +17,27 @@ public class ActionModifierPizza extends Action {
 		String code, nom;
 		double prix;
 		
-		for (Pizza pizza : dao.findAllPizzas()) {
+		for (Pizza pizza : ihmTools.getDao().findAllPizzas()) {
 			System.out.println(pizza.toString());
 		}
 		
 		System.out.println("Veuillez choisir la pizza à modifier (entrez le code) :\n(99 pour abandonner).");
 
-		String oldCode = sc.nextLine();
+		String oldCode = ihmTools.getSc().nextLine();
 		
 		if (oldCode.equals("99")) {
 			
 		} else {
 
 			System.out.println("Veuiller saisir le code");
-			code = sc.nextLine();
+			code = ihmTools.getSc().nextLine();
 			System.out.println("Veuiller saisir le nom (sans espace)");
-			nom = sc.nextLine();
+			nom = ihmTools.getSc().nextLine();
 			System.out.println("Veuiller saisir le prix");
-			prix = sc.nextDouble();
+			prix = ihmTools.getSc().nextDouble();
 
 			try {
-				dao.updatePizza(oldCode, new Pizza(code, nom, prix));
+				ihmTools.getDao().updatePizza(oldCode, new Pizza(code, nom, prix, CategoriePizza.SANS_VIANDE));
 			} catch (StockageException e) {
 				System.out.println("\nCette pizza n'existe pas\n");
 			}

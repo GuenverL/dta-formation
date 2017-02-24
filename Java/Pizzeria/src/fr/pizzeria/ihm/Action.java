@@ -1,17 +1,11 @@
 package fr.pizzeria.ihm;
 
-import java.util.Scanner;
-
-import fr.pizzeria.dao.IPizzaDao;
-
 public abstract class Action {
 	protected String nom;
-	protected IPizzaDao dao;
-	protected Scanner sc;
+	protected IhmTools ihmTools;
 
-	public Action(IPizzaDao dao, Scanner sc) {
-		this.dao = dao;
-		this.sc = sc;
+	public Action(IhmTools ihmTools) {
+		this.ihmTools = ihmTools;
 	}
 
 	public String getNom() {

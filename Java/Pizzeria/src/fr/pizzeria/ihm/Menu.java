@@ -1,38 +1,46 @@
 package fr.pizzeria.ihm;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-import fr.pizzeria.dao.IPizzaDao;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Menu {
 
+	private IhmTools ihmTools;
+	private Map<Integer, Action> actions = new TreeMap<>();
+	// private List<Action> actions = new ArrayList<Action>();
+	private int choix;
 
-	private List<Action> actions = new ArrayList<Action>();
+	public Menu(IhmTools ihmTools) {
+		this.ihmTools = ihmTools;
+		this.actions.put(1, new ActionAfficherListe(ihmTools));
+		this.actions.put(2, new ActionAjouterPizza(ihmTools));
+		this.actions.put(3, new ActionModifierPizza(ihmTools));
+		this.actions.put(4, new ActionSupprimerPizza(ihmTools));
+		this.actions.put(99, new ActionQuitter(ihmTools));
 
-	public Menu(IPizzaDao dao, Scanner sc) {
-		this.actions.add(new ActionAfficherListe(dao, sc));
-		this.actions.add(new ActionAjouterPizza(dao, sc));
-		this.actions.add(new ActionModifierPizza(dao, sc));
-		this.actions.add(new ActionSupprimerPizza(dao, sc));
 	}
 
 	public void afficher() {
-		System.out.println("***** Pizzeria Administration *****");
+		System.out.println("\n\n***** Pizzeria Administration *****");
 
-		for (Action action : actions) {
-			System.out.println((actions.indexOf(action) + 1) + ". " + action.getNom());
+		for (Map.Entry<Integer, Action> entree : actions.entrySet()) {
+			System.out.println(entree.getKey() + ". " + entree.getValue().getNom());
 		}
 
-		System.out.println("99. Sortir");
 	}
 
-	public void faire(int choix) {
-		if (choix > this.actions.size()) {
-			System.out.println("\nmauvais choix !!\n");
-		} else {
-			actions.get(choix - 1).faire();
-		}
+	public void lancer() {
+
+		do {
+			this.afficher();
+
+			choix = ihmTools.getSc().nextInt();
+			ihmTools.getSc().nextLine();
+			if (actions.get(choix) != null)
+				actions.get(choix).faire();
+			if (choix == 99)
+				break;
+
+		} while (true);
 	}
 }

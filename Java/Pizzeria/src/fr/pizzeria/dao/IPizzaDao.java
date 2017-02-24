@@ -2,21 +2,18 @@ package fr.pizzeria.dao;
 
 import java.util.List;
 
-import fr.pizzeria.exception.DeletePizzaException;
-import fr.pizzeria.exception.SavePizzaException;
-import fr.pizzeria.exception.UpdatePizzaException;
-import fr.pizzeria.model.Pizza;
+import fr.pizzeria.exception.StockageException;
 
-public interface IPizzaDao {
+public interface IPizzaDao<T> {
 
-	List<Pizza> findAllPizzas();
+	List<T> findAllPizzas();
 
 	int findPizza(String code);
 
-	void saveNewPizza(Pizza pizza) throws SavePizzaException;
+	void saveNewPizza(T pizza) throws StockageException;
 
-	void updatePizza(String codePizza, Pizza pizza) throws UpdatePizzaException;
+	void updatePizza(String codePizza, T pizza) throws StockageException;
 
-	void deletePizza(String codePizza) throws DeletePizzaException;
+	void deletePizza(String codePizza) throws StockageException;
 
 }

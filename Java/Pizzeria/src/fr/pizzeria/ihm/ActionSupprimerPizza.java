@@ -1,32 +1,29 @@
 package fr.pizzeria.ihm;
 
-import java.util.Scanner;
-
-import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.model.Pizza;
 
 public class ActionSupprimerPizza extends Action {
 
-	public ActionSupprimerPizza(IPizzaDao dao, Scanner sc) {
-		super(dao, sc);
+	public ActionSupprimerPizza(IhmTools ihmTools) {
+		super(ihmTools);
 		this.nom = "Supprimer une pizza";
 	}
 
 	@Override
 	public void faire() {
-		for (Pizza pizza : dao.findAllPizzas()) {
+		for (Pizza pizza : ihmTools.getDao().findAllPizzas()) {
 			System.out.println(pizza.toString());
 		}
 		System.out.println("Veuillez choisir la pizza à supprimer (entrez le code) :\n(99 pour abandonner).");
 
-		String code = sc.nextLine();
+		String code = ihmTools.getSc().nextLine();
 
 		if (code.equals("99")) {
 
 		} else
 			try {
-				dao.deletePizza(code);
+				ihmTools.getDao().deletePizza(code);
 			} catch (StockageException e) {
 				System.out.println("\nCette pizza n'existe pas\n");
 			}

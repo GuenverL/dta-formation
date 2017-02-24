@@ -1,15 +1,13 @@
 package fr.pizzeria.ihm;
 
-import java.util.Scanner;
-
-import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.exception.StockageException;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class ActionAjouterPizza extends Action {
 
-	public ActionAjouterPizza(IPizzaDao dao, Scanner sc) {
-		super(dao, sc);
+	public ActionAjouterPizza(IhmTools ihmTools) {
+		super(ihmTools);
 		this.nom = "Ajouter une nouvelle pizza";
 	}
 
@@ -17,16 +15,25 @@ public class ActionAjouterPizza extends Action {
 	public void faire() {
 		String code, nom;
 		double prix;
+		int choixcat = 0;
+		CategoriePizza[] cats = CategoriePizza.values();
 
 		System.out.println("Veuiller saisir le code");
-		code = sc.nextLine();
+		code = ihmTools.getSc().nextLine().toUpperCase();
 		System.out.println("Veuiller saisir le nom (sans espace)");
-		nom = sc.nextLine();
+		nom = ihmTools.getSc().nextLine();
 		System.out.println("Veuiller saisir le prix");
-		prix = sc.nextDouble();
+		prix = ihmTools.getSc().nextDouble();
+
+		System.out.println("Veuiller saisir un numero de categorie : ");
+		for (CategoriePizza cat : cats) {
+			System.out.print(cat.ordinal() + " : ");
+			System.out.println(cat.toString());
+		}
+		choixcat = ihmTools.getSc().nextInt();
 
 		try {
-			dao.saveNewPizza(new Pizza(code, nom, prix));
+			ihmTools.getDao().saveNewPizza(new Pizza(code, nom, prix, cats[choixcat]));
 		} catch (StockageException e) {
 			System.err.println("Problème lors de l'ajout de la nouvelle pizza");
 		}

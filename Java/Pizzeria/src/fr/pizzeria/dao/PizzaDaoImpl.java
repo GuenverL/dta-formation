@@ -1,5 +1,9 @@
 package fr.pizzeria.dao;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -71,4 +75,15 @@ public class PizzaDaoImpl implements IPizzaDao<Pizza> {
 		}
 	}
 
+	@Override
+	public void savePizzas() {
+		for (Pizza pizza : pizzas) {
+			System.out.println();
+			try (BufferedWriter writer = Files.newBufferedWriter(Paths.get("src/data/" + pizza.getCode() + ".txt"))) {
+				writer.write(pizza.toString());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

@@ -6,7 +6,7 @@ public class ActionAfficherListe extends Action {
 
 	public ActionAfficherListe(IhmTools ihmTools) {
 		super(ihmTools);
-		this.nom = "Lister les Pizza";
+		this.nom = "Lister les pizzas";
 	}
 
 	@Override

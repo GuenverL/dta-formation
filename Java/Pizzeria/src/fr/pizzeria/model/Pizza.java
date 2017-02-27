@@ -53,4 +53,11 @@ public class Pizza implements Comparable<Pizza> {
 		return this.code.compareTo(o.getCode());
 	}
 
+	public CategoriePizza getCategorie() {
+		return categorie;
+	}
+
+	public double getPrix() {
+		return prix;
+	}
 }

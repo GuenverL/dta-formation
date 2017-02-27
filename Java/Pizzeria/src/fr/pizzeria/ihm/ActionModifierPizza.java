@@ -8,7 +8,7 @@ public class ActionModifierPizza extends Action {
 
 	public ActionModifierPizza(IhmTools ihmTools) {
 		super(ihmTools);
-		this.nom = "Mettre à jour une Pizza";
+		this.nom = "Mettre à jour une pizza";
 	}
 
 	@Override

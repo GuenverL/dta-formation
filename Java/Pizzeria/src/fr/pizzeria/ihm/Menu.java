@@ -13,9 +13,13 @@ public class Menu {
 	public Menu(IhmTools ihmTools) {
 		this.ihmTools = ihmTools;
 		this.actions.put(1, new ActionAfficherListe(ihmTools));
-		this.actions.put(2, new ActionAjouterPizza(ihmTools));
-		this.actions.put(3, new ActionModifierPizza(ihmTools));
-		this.actions.put(4, new ActionSupprimerPizza(ihmTools));
+		this.actions.put(4, new ActionAjouterPizza(ihmTools));
+		this.actions.put(5, new ActionModifierPizza(ihmTools));
+		this.actions.put(6, new ActionSupprimerPizza(ihmTools));
+		this.actions.put(2, new ActionAfficherListeGroupee(ihmTools));
+		this.actions.put(3, new ActionAfficherPlusChere(ihmTools));
+		this.actions.put(7, new ActionSavePizzas(ihmTools));
+
 		this.actions.put(99, new ActionQuitter(ihmTools));
 
 	}

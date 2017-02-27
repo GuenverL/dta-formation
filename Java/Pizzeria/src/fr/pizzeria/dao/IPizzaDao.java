@@ -16,4 +16,6 @@ public interface IPizzaDao<T> {
 
 	void deletePizza(String codePizza) throws StockageException;
 
+	void savePizzas();
+
 }

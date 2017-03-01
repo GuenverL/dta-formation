@@ -5,6 +5,7 @@ import java.util.List;
 
 public abstract class ViewComposite {
 	protected List<ViewComposite> views = new ArrayList<>();
+	protected String id;
 
 	public ViewComposite() {
 	}

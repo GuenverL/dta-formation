@@ -2,6 +2,9 @@ package dta.chat.view.console;
 
 import java.util.Scanner;
 
+import dta.chat.model.ChatMessage;
+import dta.chat.model.observer.ChatObservable;
+
 public class ChatConsoleConversationView extends ViewComposite {
 
 	Scanner sc;
@@ -13,11 +16,10 @@ public class ChatConsoleConversationView extends ViewComposite {
 	@Override
 	public void print() {
 		System.out.println("== Conversations ==");
-		System.out.println("Welcome " + this.id);
-		while (true) {
-			if (sc.nextLine().equals("exit"))
-				break;
-		}
 	}
 
+	@Override
+	public void update(ChatObservable<ChatMessage> obs, ChatMessage msg) {
+		System.out.println(msg.getLogin() + " : " + msg.getMsg());
+	}
 }

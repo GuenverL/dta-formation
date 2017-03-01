@@ -5,9 +5,14 @@ import java.util.Scanner;
 public class ChatConsoleView extends ViewComposite {
 
 	public ChatConsoleView(Scanner sc) {
-		this.views.add(new ChatConsoleTitleView());
-		this.views.add(new ChatConsoleLoginView(sc));
-		this.views.add(new ChatConsoleConversationView(sc));
+		this.add(new ChatConsoleTitleView());
+		this.add(new ChatConsoleLoginView(sc));
+		this.add(new ChatConsoleConversationView(sc));
 	}
+
+	/*
+	 * @Override public void update(ChatObservable<ChatMessage> obs, ChatMessage
+	 * msg) { super }
+	 */
 
 }

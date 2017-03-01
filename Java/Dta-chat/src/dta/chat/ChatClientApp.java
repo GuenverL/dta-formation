@@ -2,7 +2,7 @@ package dta.chat;
 
 import java.util.Scanner;
 
-import dta.chat.model.observer.ChatConversationModel;
+import dta.chat.model.ChatConversationModel;
 import dta.chat.view.console.ChatConsoleView;
 
 public class ChatClientApp {

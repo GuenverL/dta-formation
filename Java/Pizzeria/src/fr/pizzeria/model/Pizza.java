@@ -35,12 +35,9 @@ public class Pizza implements Comparable<Pizza> {
 				try {
 					sb.append(field.get(this).toString());
 					sb.append("  ");
-				} catch (IllegalArgumentException e) {
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
+				} catch (IllegalArgumentException | IllegalAccessException e) {
 					e.printStackTrace();
 				}
-				
 		}
 		// return code + " - " + nom + " " + categorie + " " + " (" + prix + "
 		// €).";

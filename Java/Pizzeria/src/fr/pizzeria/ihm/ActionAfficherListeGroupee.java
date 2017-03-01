@@ -14,9 +14,9 @@ public class ActionAfficherListeGroupee extends Action {
 	public void faire() {
 		ihmTools.getDao().findAllPizzas().stream().collect(Collectors.groupingBy(Pizza::getCategorie))
 				.forEach((k, v) -> {
-			System.out.println(k);
-			v.stream().forEach(System.out::println);
-		});
+					System.out.println(k);
+					v.stream().forEach(System.out::println);
+				});
 	}
 
 }

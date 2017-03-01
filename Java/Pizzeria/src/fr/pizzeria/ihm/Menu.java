@@ -18,7 +18,6 @@ public class Menu {
 		this.actions.put(6, new ActionSupprimerPizza(ihmTools));
 		this.actions.put(2, new ActionAfficherListeGroupee(ihmTools));
 		this.actions.put(3, new ActionAfficherPlusChere(ihmTools));
-		this.actions.put(7, new ActionSavePizzas(ihmTools));
 
 		this.actions.put(99, new ActionQuitter(ihmTools));
 

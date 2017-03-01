@@ -13,6 +13,7 @@ public class ChatConsoleConversationView extends ViewComposite {
 	@Override
 	public void print() {
 		System.out.println("== Conversations ==");
+		System.out.println("Welcome " + this.id);
 		while (true) {
 			if (sc.nextLine().equals("exit"))
 				break;

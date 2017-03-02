@@ -20,7 +20,7 @@ public class ChatConversationModel extends ChatObservable<ChatMessage> implement
 
 	public void sendMessage(String msg) {
 		ChatMessage cmsg = new ChatMessage(login, msg);
-		notifyObservers(cmsg);
+		// notifyObservers(cmsg);
 		try {
 			this.sendMessage(cmsg);
 		} catch (ChatClientException e) {
@@ -32,17 +32,17 @@ public class ChatConversationModel extends ChatObservable<ChatMessage> implement
 	@Override
 	public void close() throws Exception {
 		socket.close();
-
 	}
 
 	@Override
 	public void sendMessage(ChatMessage msg) throws ChatClientException {
 		socket.sendMessage(msg);
-
 	}
 
 	@Override
 	public ChatMessage readMessage() throws ChatClientException {
-		return socket.readMessage();
+		ChatMessage msg = socket.readMessage();
+		notifyObservers(msg);
+		return msg;
 	}
 }

@@ -19,7 +19,7 @@ public class ChatSocketImpl implements ChatSocket{
 	@Override
 	public void sendMessage(ChatMessage msg) throws ChatClientException {
 		try {
-			client.sendObject(msg.getMsg());
+			client.sendObject(msg);
 		} catch (IOException e) {
 			throw new ChatClientException();
 		}
@@ -29,7 +29,7 @@ public class ChatSocketImpl implements ChatSocket{
 	@Override
 	public ChatMessage readMessage() throws ChatClientException {
 		try {
-			return ((ChatMessage) client.readObject());
+			return (ChatMessage) client.readObject();
 		} catch (ClassNotFoundException | IOException e) {
 			throw new ChatClientException();
 		}

@@ -25,12 +25,13 @@ public class ClientSocket extends Socket {
 	}
 	
 	// Pour démo
-	public static void main(String[] args) throws IOException {
-		ClientSocket client = new ClientSocket("localhost", 1800);
-		client.sendObject("Bonjour lol");
-		client.close();
-		// client.readObject(); // pour recevoir un message du serveur
-		
-	}
+	/*
+	 * public static void main(String[] args) throws IOException { ClientSocket
+	 * client = new ClientSocket("localhost", 1800);
+	 * client.sendObject("Bonjour lol"); client.close(); // client.readObject();
+	 * // pour recevoir un message du serveur
+	 * 
+	 * }
+	 */
 
 }

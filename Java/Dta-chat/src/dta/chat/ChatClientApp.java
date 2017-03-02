@@ -35,9 +35,13 @@ public class ChatClientApp {
 			});
 
 			String msg = sc.nextLine();
-			while (msg != "exit") {
+			while (true) {
 				model.sendMessage(msg);
 				msg = sc.nextLine();
+				if(msg.equals("exit")){
+					es.shutdown();
+					break;
+				}
 			}
 
 			try {

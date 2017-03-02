@@ -5,11 +5,12 @@ import java.io.Serializable;
 public class ChatMessage implements Serializable {
 
 	private String login;
-	private String msg;
+	private String text;
+	private static final long serialVersionUID = 12L;
 
 	public ChatMessage(String login, String msg) {
 		this.login = login;
-		this.msg = msg;
+		this.text = msg;
 	}
 
 	public String getLogin() {
@@ -17,7 +18,7 @@ public class ChatMessage implements Serializable {
 	}
 
 	public String getMsg() {
-		return msg;
+		return text;
 	}
 
 }

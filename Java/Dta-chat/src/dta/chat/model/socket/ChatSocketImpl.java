@@ -7,9 +7,9 @@ import dta.chat.model.ChatMessage;
 public class ChatSocketImpl implements ChatSocket{
 	private ClientSocket client;
 
-	public ChatSocketImpl(String ip) throws ChatClientException {
+	public ChatSocketImpl(String ip, int port) throws ChatClientException {
 		try {
-			client = new ClientSocket(ip, 1800);
+			client = new ClientSocket(ip, port);
 		} catch (IOException e) {
 			throw new ChatClientException("creation problem", e);
 		}

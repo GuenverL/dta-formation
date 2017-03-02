@@ -15,7 +15,7 @@ public class ChatClientApp {
 
 		try (Scanner sc = new Scanner(System.in)) {
 			ChatConversationModel model;
-			model = new ChatConversationModel(new ChatSocketImpl("192.168.99.31"));
+			model = new ChatConversationModel(new ChatSocketImpl("192.168.99.31", 1800));
 
 			final ChatConsoleView view = new ChatConsoleView(sc);
 			ExecutorService es = Executors.newFixedThreadPool(1);

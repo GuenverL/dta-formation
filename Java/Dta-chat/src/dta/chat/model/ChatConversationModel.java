@@ -19,7 +19,7 @@ public class ChatConversationModel extends ChatObservable<ChatMessage> implement
 
 
 	public void sendMessage(String msg) {
-		ChatMessage cmsg = new ChatMessage(login, msg);
+		ChatMessage cmsg = new ChatMessage("\033[35m" + login + "\033[0m", msg);
 		// notifyObservers(cmsg);
 		try {
 			this.sendMessage(cmsg);

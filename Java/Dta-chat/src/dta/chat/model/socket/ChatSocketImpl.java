@@ -7,12 +7,11 @@ import dta.chat.model.ChatMessage;
 public class ChatSocketImpl implements ChatSocket{
 	private ClientSocket client;
 
-	public ChatSocketImpl() {
+	public ChatSocketImpl(String ip) throws ChatClientException {
 		try {
-			client = new ClientSocket("localhost", 1800);
+			client = new ClientSocket(ip, 1800);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ChatClientException("creation problem", e);
 		}
 	}
 
@@ -21,7 +20,7 @@ public class ChatSocketImpl implements ChatSocket{
 		try {
 			client.sendObject(msg);
 		} catch (IOException e) {
-			throw new ChatClientException();
+			throw new ChatClientException("read problem", e);
 		}
 
 	}
@@ -31,14 +30,14 @@ public class ChatSocketImpl implements ChatSocket{
 		try {
 			return (ChatMessage) client.readObject();
 		} catch (ClassNotFoundException | IOException e) {
-			throw new ChatClientException();
+			throw new ChatClientException("read problem", e);
 		}
 
 	}
 
 	@Override
 	public void close() throws Exception {
-
+		client.close();
 	}
 	
 }

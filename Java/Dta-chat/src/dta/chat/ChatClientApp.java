@@ -11,10 +11,12 @@ import dta.chat.view.console.ChatConsoleView;
 
 public class ChatClientApp {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ChatClientException {
 
 		try (Scanner sc = new Scanner(System.in)) {
-			ChatConversationModel model = new ChatConversationModel(new ChatSocketImpl());
+			ChatConversationModel model;
+			model = new ChatConversationModel(new ChatSocketImpl("192.168.99.31"));
+
 			final ChatConsoleView view = new ChatConsoleView(sc);
 			ExecutorService es = Executors.newFixedThreadPool(1);
 
@@ -26,10 +28,10 @@ public class ChatClientApp {
 			view.print();
 			es.execute(() -> {
 				while (true) {
-				try {
-					model.readMessage();
-				} catch (ChatClientException e) {
-					e.printStackTrace();
+					try {
+						model.readMessage();
+					} catch (ChatClientException e) {
+						e.printStackTrace();
 					}
 				}
 			});

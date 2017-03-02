@@ -21,7 +21,10 @@ public class ChatClientApp {
 			ExecutorService es = Executors.newFixedThreadPool(1);
 
 			view.setAuthController((login) -> {
-				model.setLogin(login);
+				try {
+					model.setLogin(login);
+				} catch (ChatClientException e) {
+				}
 			});
 
 			model.addObserver(view);

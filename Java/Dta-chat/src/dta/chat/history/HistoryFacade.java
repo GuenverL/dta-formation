@@ -28,7 +28,9 @@ public class HistoryFacade {
 
 	public void saveMessage(ChatMessage msg) throws ChatClientException {
 		try {
-			Files.write(file, (msg.getLogin() + ":#" + msg.getMsg() + " \n").getBytes(), StandardOpenOption.CREATE,
+			Files.write(file,
+					(msg.getLogin() + ":#" + msg.getMsg().replaceAll("\\[0m|\\[[0-9]+m", "") + " \n").getBytes(),
+					StandardOpenOption.CREATE,
 					StandardOpenOption.APPEND);
 		} catch (IOException e) {
 			throw new ChatClientException("file writing error", e);

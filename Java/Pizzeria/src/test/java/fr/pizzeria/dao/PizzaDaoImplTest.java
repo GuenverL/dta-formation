@@ -1,11 +1,31 @@
 package fr.pizzeria.dao;
 
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import fr.pizzeria.model.CategoriePizza;
+import fr.pizzeria.model.Pizza;
+
 public class PizzaDaoImplTest {
 	private PizzaDaoImpl pizzaDao;
 
+	@Before
+	public void setUp() {
+		pizzaDao = new PizzaDaoImpl();
+	}
+
+	@Test
+	public void test_equals() {
+		Pizza[] pizzas = new Pizza[3];
+		pizzas[0] = new Pizza("ABC", "abc", 1, CategoriePizza.POISSON);
+		pizzas[1] = new Pizza("ABC", "abc", 1, CategoriePizza.POISSON);
+		pizzas[1] = new Pizza("ABC", "abc", 1, CategoriePizza.SANS_VIANDE);
+		assertTrue(pizzas[0].equals(pizzas[1]));
+	}
+
 	/*
-	 * @Before public void setUp() { pizzaDao = new PizzaDaoImpl(); }
-	 * 
 	 * @Test public void testFindAllPizzas() { fail("j'echoue"); }
 	 * 
 	 * @Test public void test_find_all() { List<Pizza> pizzas =

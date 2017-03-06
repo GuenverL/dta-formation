@@ -34,7 +34,7 @@ public class ActionAjouterPizza extends Action {
 		try {
 			ihmTools.getDao().saveNewPizza(new Pizza(code, nom, prix, cats[choixcat]));
 		} catch (StockageException e) {
-			System.err.println("Probl�me lors de l'ajout de la nouvelle pizza");
+			System.err.println("Probleme lors de l'ajout de la nouvelle pizza");
 		}
 
 	}

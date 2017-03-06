@@ -7,7 +7,7 @@ import dta.pizzeria_model.Pizza;
 public class ActionAfficherPlusChere extends Action {
 	public ActionAfficherPlusChere(IhmTools ihmTools) {
 		super(ihmTools);
-		this.nom = "Afficher la pizza la plus ch�re";
+		this.nom = "Afficher la pizza la plus chere";
 	}
 
 	@Override

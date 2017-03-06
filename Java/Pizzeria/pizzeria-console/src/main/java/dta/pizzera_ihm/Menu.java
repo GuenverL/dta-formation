@@ -7,7 +7,6 @@ public class Menu {
 
 	private IhmTools ihmTools;
 	private Map<Integer, Action> actions = new TreeMap<>();
-	// private List<Action> actions = new ArrayList<Action>();
 	private int choix;
 
 	public Menu(IhmTools ihmTools) {

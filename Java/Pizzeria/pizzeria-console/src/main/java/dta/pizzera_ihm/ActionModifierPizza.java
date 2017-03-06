@@ -8,7 +8,7 @@ public class ActionModifierPizza extends Action {
 
 	public ActionModifierPizza(IhmTools ihmTools) {
 		super(ihmTools);
-		this.nom = "Mettre � jour une pizza";
+		this.nom = "Mettre a jour une pizza";
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class ActionModifierPizza extends Action {
 			System.out.println(pizza.toString());
 		}
 		
-		System.out.println("Veuillez choisir la pizza � modifier (entrez le code) :\n(99 pour abandonner).");
+		System.out.println("Veuillez choisir la pizza a modifier (entrez le code) :\n(99 pour abandonner).");
 
 		String oldCode = ihmTools.getSc().nextLine();
 		

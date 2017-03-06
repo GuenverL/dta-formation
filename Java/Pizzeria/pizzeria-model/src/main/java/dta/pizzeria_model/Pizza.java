@@ -42,8 +42,6 @@ public class Pizza implements Comparable<Pizza> {
 					e.printStackTrace();
 				}
 		}
-		// return code + " - " + nom + " " + categorie + " " + " (" + prix + "
-		// �).";
 		return sb.toString();
 
 	}

@@ -15,7 +15,7 @@ public class ActionSupprimerPizza extends Action {
 		for (Pizza pizza : ihmTools.getDao().findAllPizzas()) {
 			System.out.println(pizza.toString());
 		}
-		System.out.println("Veuillez choisir la pizza � supprimer (entrez le code) :\n(99 pour abandonner).");
+		System.out.println("Veuillez choisir la pizza a supprimer (entrez le code) :\n(99 pour abandonner).");
 
 		String code = ihmTools.getSc().nextLine();
 

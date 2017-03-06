@@ -11,7 +11,7 @@ public class ActionAfficherListe extends Action {
 
 	@Override
 	public void faire() {
-		for (Pizza pizza : ihmTools.getDao().findAllPizzas()) {
+		for (Pizza pizza : ihmTools.getDao().findAll()) {
 			System.out.println(pizza.toString());
 		}
 		System.out.println("\n");

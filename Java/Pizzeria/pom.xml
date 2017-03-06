@@ -41,24 +41,22 @@
                 <version>3.0.0</version>
             </plugin>
         </plugins>
-
         <pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.0.2</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>dta.pizzeria_console.Pizzeria</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.0.2</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <mainClass>dta.pizzeria_console.Pizzeria</mainClass>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
-
         <finalName>Pizzeria</finalName>
     </build>
     <dependencyManagement>
@@ -94,6 +92,11 @@
                 <groupId>dta</groupId>
                 <artifactId>pizzeria-dao</artifactId>
                 <version>1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.reflections</groupId>
+                <artifactId>reflections</artifactId>
+                <version>0.9.10</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

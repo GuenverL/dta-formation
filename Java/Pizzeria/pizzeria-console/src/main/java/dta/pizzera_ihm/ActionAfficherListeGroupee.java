@@ -12,7 +12,7 @@ public class ActionAfficherListeGroupee extends Action {
 
 	@Override
 	public void faire() {
-		ihmTools.getDao().findAllPizzas().stream().collect(Collectors.groupingBy(Pizza::getCategorie))
+		ihmTools.getDao().findAll().stream().collect(Collectors.groupingBy(Pizza::getCategorie))
 				.forEach((k, v) -> {
 					System.out.println(k);
 					v.stream().forEach(System.out::println);

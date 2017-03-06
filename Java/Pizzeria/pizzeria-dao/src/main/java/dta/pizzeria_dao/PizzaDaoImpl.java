@@ -10,7 +10,7 @@ import dta.pizzeria.exception.UpdatePizzaException;
 import dta.pizzeria_model.CategoriePizza;
 import dta.pizzeria_model.Pizza;
 
-public class PizzaDaoImpl implements IPizzaDao<Pizza> {
+public class PizzaDaoImpl implements IDao<Pizza> {
 
 	private List<Pizza> pizzas = new ArrayList<Pizza>();
 
@@ -28,12 +28,12 @@ public class PizzaDaoImpl implements IPizzaDao<Pizza> {
 
 
 	@Override
-	public List<Pizza> findAllPizzas() {
+	public List<Pizza> findAll() {
 		return pizzas;
 	}
 
 	@Override
-	public int findPizza(String code) {
+	public int find(String code) {
 		int index = -1;
 		for (Pizza pizza : pizzas) {
 			if (pizza.getCode().equalsIgnoreCase(code)) {
@@ -44,15 +44,15 @@ public class PizzaDaoImpl implements IPizzaDao<Pizza> {
 	}
 
 	@Override
-	public void saveNewPizza(Pizza pizza) throws SavePizzaException {
+	public void saveNew(Pizza pizza) throws SavePizzaException {
 		if (!pizzas.add(pizza))
 			throw new SavePizzaException();
 		Collections.sort(pizzas);
 	}
 
 	@Override
-	public void updatePizza(String codePizza, Pizza newPizza) throws UpdatePizzaException {
-		int index = findPizza(codePizza);
+	public void update(String codePizza, Pizza newPizza) throws UpdatePizzaException {
+		int index = find(codePizza);
 		if (index > -1) {
 			pizzas.set(index, newPizza);
 			Collections.sort(pizzas);
@@ -62,8 +62,8 @@ public class PizzaDaoImpl implements IPizzaDao<Pizza> {
 	}
 
 	@Override
-	public void deletePizza(String codePizza) throws DeletePizzaException {
-		int index = findPizza(codePizza);
+	public void delete(String codePizza) throws DeletePizzaException {
+		int index = find(codePizza);
 		if (index > -1) {
 			pizzas.remove(index);
 		} else {

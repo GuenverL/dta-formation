@@ -32,7 +32,7 @@ public class ActionAjouterPizza extends Action {
 		choixcat = ihmTools.getSc().nextInt();
 
 		try {
-			ihmTools.getDao().saveNewPizza(new Pizza(code, nom, prix, cats[choixcat]));
+			ihmTools.getDao().saveNew(new Pizza(code, nom, prix, cats[choixcat]));
 		} catch (StockageException e) {
 			System.err.println("Probleme lors de l'ajout de la nouvelle pizza");
 		}

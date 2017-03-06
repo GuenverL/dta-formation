@@ -13,7 +13,7 @@ public class ActionAfficherPlusChere extends Action {
 	@Override
 	public void faire() {
 
-		ihmTools.getDao().findAllPizzas().stream().max(Comparator.comparing(Pizza::getPrix))
+		ihmTools.getDao().findAll().stream().max(Comparator.comparing(Pizza::getPrix))
 				.ifPresent(System.out::println);
 	}
 }

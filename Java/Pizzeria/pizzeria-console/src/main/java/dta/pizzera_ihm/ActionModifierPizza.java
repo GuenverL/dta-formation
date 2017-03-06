@@ -17,7 +17,7 @@ public class ActionModifierPizza extends Action {
 		String code, nom;
 		double prix;
 		
-		for (Pizza pizza : ihmTools.getDao().findAllPizzas()) {
+		for (Pizza pizza : ihmTools.getDao().findAll()) {
 			System.out.println(pizza.toString());
 		}
 		
@@ -37,7 +37,7 @@ public class ActionModifierPizza extends Action {
 			prix = ihmTools.getSc().nextDouble();
 
 			try {
-				ihmTools.getDao().updatePizza(oldCode, new Pizza(code, nom, prix, CategoriePizza.SANS_VIANDE));
+				ihmTools.getDao().update(oldCode, new Pizza(code, nom, prix, CategoriePizza.SANS_VIANDE));
 			} catch (StockageException e) {
 				System.out.println("\nCette pizza n'existe pas\n");
 			}

@@ -12,7 +12,7 @@ public class ActionSupprimerPizza extends Action {
 
 	@Override
 	public void faire() {
-		for (Pizza pizza : ihmTools.getDao().findAllPizzas()) {
+		for (Pizza pizza : ihmTools.getDao().findAll()) {
 			System.out.println(pizza.toString());
 		}
 		System.out.println("Veuillez choisir la pizza a supprimer (entrez le code) :\n(99 pour abandonner).");
@@ -23,7 +23,7 @@ public class ActionSupprimerPizza extends Action {
 
 		} else
 			try {
-				ihmTools.getDao().deletePizza(code);
+				ihmTools.getDao().delete(code);
 			} catch (StockageException e) {
 				System.out.println("\nCette pizza n'existe pas\n");
 			}

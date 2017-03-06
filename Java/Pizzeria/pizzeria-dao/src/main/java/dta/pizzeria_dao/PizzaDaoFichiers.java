@@ -12,12 +12,12 @@ import dta.pizzeria_model.CategoriePizza;
 import dta.pizzeria_model.Pizza;
 
 
-public class PizzaDaoFichiers implements IPizzaDao<Pizza> {
+public class PizzaDaoFichiers implements IDao<Pizza> {
 
 	public PizzaDaoFichiers() {
 	}
 
-	public List<Pizza> findAllPizzas() {
+	public List<Pizza> findAll() {
 		List<Pizza> pizzas = new ArrayList<Pizza>();
 		try {
 			Files.list(Paths.get("data")).forEach(path -> {
@@ -35,12 +35,12 @@ public class PizzaDaoFichiers implements IPizzaDao<Pizza> {
 		return pizzas;
 	}
 	@Override
-	public int findPizza(String code) {
+	public int find(String code) {
 		return 0;
 	}
 
 	@Override
-	public void saveNewPizza(Pizza pizza) throws StockageException {
+	public void saveNew(Pizza pizza) throws StockageException {
 		try (BufferedWriter writer = Files.newBufferedWriter(Paths.get("data", pizza.getCode() + ".txt"))) {
 			writer.write(pizza.toString());
 		} catch (IOException e) {
@@ -49,13 +49,13 @@ public class PizzaDaoFichiers implements IPizzaDao<Pizza> {
 	}
 
 	@Override
-	public void updatePizza(String codePizza, Pizza pizza) throws StockageException {
-		deletePizza(codePizza);
-		saveNewPizza(pizza);
+	public void update(String codePizza, Pizza pizza) throws StockageException {
+		delete(codePizza);
+		saveNew(pizza);
 	}
 
 	@Override
-	public void deletePizza(String codePizza) throws StockageException {
+	public void delete(String codePizza) throws StockageException {
 		try {
 			Files.delete(Paths.get("data", codePizza + ".txt"));
 		} catch (IOException e) {

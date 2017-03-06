@@ -1,0 +1,29 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>dta</groupId>
+        <artifactId>pizzeria-app</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <artifactId>pizzeria-console</artifactId>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>dta</groupId>
+            <artifactId>pizzeria-model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>dta</groupId>
+            <artifactId>pizzeria-dao</artifactId>
+        </dependency>
+    </dependencies>
+    <version>1</version>
+    <groupId>dta</groupId>
+</project>

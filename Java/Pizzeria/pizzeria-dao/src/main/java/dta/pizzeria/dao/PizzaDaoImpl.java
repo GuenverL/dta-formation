@@ -46,7 +46,7 @@ public class PizzaDaoImpl implements IDao<Pizza> {
 	@Override
 	public void saveNew(Pizza pizza) {
 		if (!pizzas.add(pizza))
-			throw new SavePizzaException();
+			throw new SavePizzaException("Save error", null);
 		Collections.sort(pizzas);
 	}
 

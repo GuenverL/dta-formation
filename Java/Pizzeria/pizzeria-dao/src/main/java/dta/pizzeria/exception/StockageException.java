@@ -1,9 +1,8 @@
 package dta.pizzeria.exception;
 
 public class StockageException extends RuntimeException {
-	public StockageException() {
-		// TODO Auto-generated constructor stub
-	}
+
+	protected static final long serialVersionUID = 1L;
 
 	public StockageException(String error, Exception e) {
 		super(error, e);

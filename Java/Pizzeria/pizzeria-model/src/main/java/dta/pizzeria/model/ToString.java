@@ -1,4 +1,4 @@
-package dta.pizzeria_model;
+package dta.pizzeria.model;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

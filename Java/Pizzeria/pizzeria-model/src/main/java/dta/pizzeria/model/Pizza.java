@@ -1,4 +1,4 @@
-package dta.pizzeria_model;
+package dta.pizzeria.model;
 
 import java.lang.reflect.Field;
 

@@ -1,4 +1,4 @@
-package dta.pizzeria_dao;
+package dta.pizzeria.dao;
 
 import java.util.List;
 

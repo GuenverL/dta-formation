@@ -1,6 +1,6 @@
 package dta.pizzeria.ihm;
 
-import dta.pizzeria_model.Pizza;
+import dta.pizzeria.model.Pizza;
 
 @OptionMenu
 public class ActionAfficherListe extends Action {

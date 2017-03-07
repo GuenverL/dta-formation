@@ -1,8 +1,8 @@
 package dta.pizzeria.ihm;
 
 import dta.pizzeria.exception.StockageException;
-import dta.pizzeria_model.CategoriePizza;
-import dta.pizzeria_model.Pizza;
+import dta.pizzeria.model.CategoriePizza;
+import dta.pizzeria.model.Pizza;
 
 public class ActionModifierPizza extends Action {
 

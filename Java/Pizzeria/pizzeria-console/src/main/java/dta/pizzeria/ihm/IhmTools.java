@@ -2,9 +2,9 @@ package dta.pizzeria.ihm;
 
 import java.util.Scanner;
 
-import dta.pizzeria_dao.IDao;
-import dta.pizzeria_dao.PizzaDaoImpl;
-import dta.pizzeria_model.Pizza;
+import dta.pizzeria.dao.IDao;
+import dta.pizzeria.dao.PizzaDaoImpl;
+import dta.pizzeria.model.Pizza;
 
 public class IhmTools {
 

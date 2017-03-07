@@ -1,4 +1,4 @@
-package dta.pizzeria_dao;
+package dta.pizzeria.dao;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,8 +7,8 @@ import java.util.List;
 import dta.pizzeria.exception.DeletePizzaException;
 import dta.pizzeria.exception.SavePizzaException;
 import dta.pizzeria.exception.UpdatePizzaException;
-import dta.pizzeria_model.CategoriePizza;
-import dta.pizzeria_model.Pizza;
+import dta.pizzeria.model.CategoriePizza;
+import dta.pizzeria.model.Pizza;
 
 public class PizzaDaoImpl implements IDao<Pizza> {
 

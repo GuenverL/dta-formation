@@ -2,7 +2,7 @@ package dta.pizzeria.ihm;
 
 import java.util.Comparator;
 
-import dta.pizzeria_model.Pizza;
+import dta.pizzeria.model.Pizza;
 
 public class ActionAfficherPlusChere extends Action {
 	public ActionAfficherPlusChere(IhmTools ihmTools) {

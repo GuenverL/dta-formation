@@ -1,4 +1,4 @@
-package dta.pizzeria_dao;
+package dta.pizzeria.dao;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dta.pizzeria.exception.StockageException;
-import dta.pizzeria_model.CategoriePizza;
-import dta.pizzeria_model.Pizza;
+import dta.pizzeria.model.CategoriePizza;
+import dta.pizzeria.model.Pizza;
 
 
 public class PizzaDaoFichiers implements IDao<Pizza> {

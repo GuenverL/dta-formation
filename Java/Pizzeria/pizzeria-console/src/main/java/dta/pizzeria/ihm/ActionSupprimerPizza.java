@@ -1,7 +1,7 @@
 package dta.pizzeria.ihm;
 
 import dta.pizzeria.exception.StockageException;
-import dta.pizzeria_model.Pizza;
+import dta.pizzeria.model.Pizza;
 
 public class ActionSupprimerPizza extends Action {
 

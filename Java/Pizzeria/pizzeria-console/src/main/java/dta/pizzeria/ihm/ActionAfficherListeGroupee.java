@@ -2,7 +2,7 @@ package dta.pizzeria.ihm;
 
 import java.util.stream.Collectors;
 
-import dta.pizzeria_model.Pizza;
+import dta.pizzeria.model.Pizza;
 
 public class ActionAfficherListeGroupee extends Action {
 	public ActionAfficherListeGroupee(IhmTools ihmtools) {

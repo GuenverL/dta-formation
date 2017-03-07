@@ -1,4 +1,4 @@
-package dta.pizzeria_model;
+package dta.pizzeria.model;
 
 public enum CategoriePizza {
 

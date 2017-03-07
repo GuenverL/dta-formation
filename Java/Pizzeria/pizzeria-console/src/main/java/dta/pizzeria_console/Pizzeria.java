@@ -2,10 +2,10 @@ package dta.pizzeria_console;
 
 import java.util.ResourceBundle;
 
+import dta.pizzeria.dao.IDao;
 import dta.pizzeria.ihm.IhmTools;
 import dta.pizzeria.ihm.Menu;
-import dta.pizzeria_dao.IDao;
-import dta.pizzeria_model.Pizza;
+import dta.pizzeria.model.Pizza;
 
 public class Pizzeria {
 	public static void main(String args[])

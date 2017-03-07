@@ -36,13 +36,13 @@
       <id>dev</id>
       <properties>
         <name>daoImpl</name>
-        <daoImpl>dta.pizzeria_dao.PizzaDaoImpl</daoImpl>
+        <daoImpl>dta.pizzeria.dao.PizzaDaoImpl</daoImpl>
       </properties>
     </profile>
     <profile>
       <id>prod</id>
       <properties>
-        <daoImpl>dta.pizzeria_dao.PizzaDaoFichiers</daoImpl>
+        <daoImpl>dta.pizzeria.dao.PizzaDaoFichiers</daoImpl>
       </properties>
     </profile>
   </profiles>

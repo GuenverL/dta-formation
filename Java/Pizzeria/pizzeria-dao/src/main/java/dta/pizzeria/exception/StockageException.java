@@ -2,7 +2,7 @@ package dta.pizzeria.exception;
 
 import java.io.IOException;
 
-public class StockageException extends Exception {
+public class StockageException extends RuntimeException {
 	public StockageException() {
 		// TODO Auto-generated constructor stub
 	}

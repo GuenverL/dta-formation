@@ -1,4 +1,4 @@
-package dta.pizzeria_console;
+package dta.pizzeria.console;
 
 import java.util.ResourceBundle;
 

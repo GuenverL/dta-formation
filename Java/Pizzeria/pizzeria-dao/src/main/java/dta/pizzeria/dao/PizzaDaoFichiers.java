@@ -22,16 +22,17 @@ public class PizzaDaoFichiers implements IDao<Pizza> {
 		List<Pizza> pizzas = new ArrayList<Pizza>();
 		try {
 			Files.list(Paths.get("data")).forEach(path -> {
-				String[] PizzaStr;
+				String[] pizzaStr;
 				try {
-					PizzaStr = Files.readAllLines(path).get(0).split(";");
-					pizzas.add(new Pizza(PizzaStr[0], PizzaStr[1], Double.parseDouble(PizzaStr[2]),
+					pizzaStr = Files.readAllLines(path).get(0).split(";");
+					pizzas.add(new Pizza(pizzaStr[0], pizzaStr[1], Double.parseDouble(pizzaStr[2]),
 							CategoriePizza.VIANDE));
 				} catch (IOException e) {
-					// throw new StockageException("Search error", e);
+					throw new StockageException("error", e);
 				}
 			});
 		} catch (IOException e) {
+			throw new StockageException("Search error", e);
 		}
 		return pizzas;
 	}
@@ -60,7 +61,7 @@ public class PizzaDaoFichiers implements IDao<Pizza> {
 		try {
 			Files.delete(Paths.get("data", codePizza + ".txt"));
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new DeletePizzaException("delete error", e);
 		}
 	}
 

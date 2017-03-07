@@ -24,29 +24,19 @@ public class Menu {
 
 		List<? extends Action> listActions = actionClasses.stream()
 				.filter(actions -> actions.getAnnotation(OptionMenu.class) != null).map(actions -> {
-					return actions.newInstance();
+
+					try {
+						return actions.newInstance();
+					} catch (InstantiationException | IllegalAccessException e) {
+						e.printStackTrace();
+					}
+					return null;
+
 				}).collect(Collectors.toList());
 
 		for (int i = 0; i < listActions.size(); i++) {
 			actions.put(i, listActions.get(i));
 		}
-	}
-
-		/*
-		 * Set<Class<?>> annotated =
-		 * reflections.getTypesAnnotatedWith(OptionMenu.class);
-		 * 
-		 * this.ihmTools = ihmTools; this.actions.put(1, new
-		 * ActionAfficherListe(ihmTools)); this.actions.put(4, new
-		 * ActionAjouterPizza(ihmTools)); this.actions.put(5, new
-		 * ActionModifierPizza(ihmTools)); this.actions.put(6, new
-		 * ActionSupprimerPizza(ihmTools)); this.actions.put(2, new
-		 * ActionAfficherListeGroupee(ihmTools)); this.actions.put(3, new
-		 * ActionAfficherPlusChere(ihmTools));
-		 * 
-		 * this.actions.put(99, new ActionQuitter(ihmTools));
-		 */
-
 	}
 
 	public void afficher() {

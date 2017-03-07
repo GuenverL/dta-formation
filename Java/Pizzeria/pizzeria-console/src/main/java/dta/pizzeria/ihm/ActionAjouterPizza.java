@@ -14,7 +14,7 @@ public class ActionAjouterPizza extends Action {
 	public void faire() {
 		String code, nom;
 		double prix;
-		int choixcat = 0;
+		int choixcat;
 		CategoriePizza[] cats = CategoriePizza.values();
 
 		System.out.println("Veuiller saisir le code");

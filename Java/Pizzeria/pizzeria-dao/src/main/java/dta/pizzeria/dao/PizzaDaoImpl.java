@@ -12,7 +12,7 @@ import dta.pizzeria.model.Pizza;
 
 public class PizzaDaoImpl implements IDao<Pizza> {
 
-	private List<Pizza> pizzas = new ArrayList<Pizza>();
+	private List<Pizza> pizzas = new ArrayList<>();
 
 	public PizzaDaoImpl() {
 		pizzas.add(new Pizza("PEP", "P�p�roni", 12.50, CategoriePizza.VIANDE));
@@ -44,30 +44,30 @@ public class PizzaDaoImpl implements IDao<Pizza> {
 	}
 
 	@Override
-	public void saveNew(Pizza pizza) throws SavePizzaException {
+	public void saveNew(Pizza pizza) {
 		if (!pizzas.add(pizza))
 			throw new SavePizzaException();
 		Collections.sort(pizzas);
 	}
 
 	@Override
-	public void update(String codePizza, Pizza newPizza) throws UpdatePizzaException {
+	public void update(String codePizza, Pizza newPizza) {
 		int index = find(codePizza);
 		if (index > -1) {
 			pizzas.set(index, newPizza);
 			Collections.sort(pizzas);
 		} else {
-			throw new UpdatePizzaException();
+			throw new UpdatePizzaException(codePizza, null);
 		}
 	}
 
 	@Override
-	public void delete(String codePizza) throws DeletePizzaException {
+	public void delete(String codePizza) {
 		int index = find(codePizza);
 		if (index > -1) {
 			pizzas.remove(index);
 		} else {
-			throw new DeletePizzaException();
+			throw new DeletePizzaException(codePizza, null);
 		}
 	}
 }

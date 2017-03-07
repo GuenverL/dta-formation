@@ -39,7 +39,7 @@ public class Pizza implements Comparable<Pizza> {
 					sb.append(field.get(this).toString());
 					sb.append("  ");
 				} catch (IllegalArgumentException | IllegalAccessException e) {
-					e.printStackTrace();
+					System.out.println("ToString error");
 				}
 		}
 		return sb.toString();
@@ -59,6 +59,7 @@ public class Pizza implements Comparable<Pizza> {
 		return prix;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -78,6 +79,7 @@ public class Pizza implements Comparable<Pizza> {
 				isEquals();
 	}
 	
+	@Override
 	public int hashCode() {
 	     return new HashCodeBuilder(17, 37).
 	       append(this.code).

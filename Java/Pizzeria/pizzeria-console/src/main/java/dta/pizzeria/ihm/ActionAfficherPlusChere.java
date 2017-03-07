@@ -12,7 +12,7 @@ public class ActionAfficherPlusChere extends Action {
 	}
 
 	@Override
-	public void faire() throws StockageException {
+	public void faire() {
 
 		ihmTools.getDao().findAll().stream().max(Comparator.comparing(Pizza::getPrix))
 				.ifPresent(System.out::println);

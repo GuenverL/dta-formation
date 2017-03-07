@@ -25,9 +25,7 @@ public class ActionModifierPizza extends Action {
 
 		String oldCode = ihmTools.getSc().nextLine();
 		
-		if (oldCode.equals("99")) {
-			
-		} else {
+		if (!("99".equals(oldCode))) {
 
 			System.out.println("Veuiller saisir le code");
 			code = ihmTools.getSc().nextLine();

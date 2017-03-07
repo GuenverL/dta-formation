@@ -30,7 +30,6 @@ public class Menu {
 					try {
 						return actionsCls.newInstance();
 					} catch (InstantiationException | IllegalAccessException e) {
-						e.printStackTrace();
 						return null;
 					}
 

@@ -14,6 +14,6 @@ public abstract class Action {
 		return nom;
 	}
 
-	public void faire() throws StockageException {
+	public void faire() {
 	}
 }

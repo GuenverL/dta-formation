@@ -1,20 +1,19 @@
 package dta.pizzeria.dao;
 
-import java.io.IOException;
 import java.util.List;
 
 import dta.pizzeria.exception.StockageException;
 
 public interface IDao<T> {
 
-	List<T> findAll() throws StockageException;
+	List<T> findAll();
 
 	int find(String code);
 
-	void saveNew(T pizza) throws StockageException;
+	void saveNew(T pizza);
 
-	void update(String codePizza, T pizza) throws StockageException;
+	void update(String codePizza, T pizza);
 
-	void delete(String codePizza) throws StockageException;
+	void delete(String codePizza);
 
 }

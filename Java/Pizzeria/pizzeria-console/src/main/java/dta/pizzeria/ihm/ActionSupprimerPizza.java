@@ -19,13 +19,12 @@ public class ActionSupprimerPizza extends Action {
 
 		String code = ihmTools.getSc().nextLine();
 
-		if (code.equals("99")) {
-
-		} else
+		if (!("99".equals(code))) {
 			try {
 				ihmTools.getDao().delete(code);
 			} catch (StockageException e) {
 				System.out.println("\nCette pizza n'existe pas\n");
 			}
+		}
 	}
 }

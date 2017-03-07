@@ -12,7 +12,7 @@ public class ActionAfficherListeGroupee extends Action {
 	}
 
 	@Override
-	public void faire() throws StockageException {
+	public void faire() {
 		ihmTools.getDao().findAll().stream().collect(Collectors.groupingBy(Pizza::getCategorie))
 				.forEach((k, v) -> {
 					System.out.println(k);

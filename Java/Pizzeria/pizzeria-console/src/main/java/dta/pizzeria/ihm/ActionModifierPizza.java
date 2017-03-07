@@ -12,7 +12,7 @@ public class ActionModifierPizza extends Action {
 	}
 
 	@Override
-	public void faire() {
+	public void faire() throws StockageException {
 		
 		String code, nom;
 		double prix;

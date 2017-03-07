@@ -2,6 +2,7 @@ package dta.pizzeria.ihm;
 
 import java.util.Comparator;
 
+import dta.pizzeria.exception.StockageException;
 import dta.pizzeria.model.Pizza;
 
 public class ActionAfficherPlusChere extends Action {
@@ -11,7 +12,7 @@ public class ActionAfficherPlusChere extends Action {
 	}
 
 	@Override
-	public void faire() {
+	public void faire() throws StockageException {
 
 		ihmTools.getDao().findAll().stream().max(Comparator.comparing(Pizza::getPrix))
 				.ifPresent(System.out::println);

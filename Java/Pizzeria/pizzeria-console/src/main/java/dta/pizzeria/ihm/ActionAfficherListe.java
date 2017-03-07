@@ -1,5 +1,6 @@
 package dta.pizzeria.ihm;
 
+import dta.pizzeria.exception.StockageException;
 import dta.pizzeria.model.Pizza;
 
 @OptionMenu
@@ -11,7 +12,7 @@ public class ActionAfficherListe extends Action {
 	}
 
 	@Override
-	public void faire() {
+	public void faire() throws StockageException {
 		for (Pizza pizza : ihmTools.getDao().findAll()) {
 			System.out.println(pizza.toString());
 		}

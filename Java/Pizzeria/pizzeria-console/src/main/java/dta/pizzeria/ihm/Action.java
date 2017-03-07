@@ -1,5 +1,7 @@
 package dta.pizzeria.ihm;
 
+import dta.pizzeria.exception.StockageException;
+
 public abstract class Action {
 	protected String nom;
 	protected IhmTools ihmTools;
@@ -12,6 +14,6 @@ public abstract class Action {
 		return nom;
 	}
 
-	public void faire() {
+	public void faire() throws StockageException {
 	}
 }

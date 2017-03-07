@@ -3,13 +3,14 @@ package dta.pizzeria_console;
 import java.util.ResourceBundle;
 
 import dta.pizzeria.dao.IDao;
+import dta.pizzeria.exception.StockageException;
 import dta.pizzeria.ihm.IhmTools;
 import dta.pizzeria.ihm.Menu;
 import dta.pizzeria.model.Pizza;
 
 public class Pizzeria {
 	public static void main(String args[])
-			throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+			throws InstantiationException, IllegalAccessException, ClassNotFoundException, StockageException {
 
 		ResourceBundle bundle = ResourceBundle.getBundle("application");
 

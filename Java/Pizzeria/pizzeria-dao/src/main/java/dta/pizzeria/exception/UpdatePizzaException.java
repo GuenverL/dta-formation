@@ -4,8 +4,8 @@ public class UpdatePizzaException extends StockageException {
 	public UpdatePizzaException() {
 	}
 
-	public UpdatePizzaException(String error) {
-		super(error);
+	public UpdatePizzaException(String error, Exception e) {
+		super(error, e);
 	}
 
 }

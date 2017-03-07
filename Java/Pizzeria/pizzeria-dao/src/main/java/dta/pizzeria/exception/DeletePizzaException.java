@@ -4,8 +4,8 @@ public class DeletePizzaException extends StockageException {
 	public DeletePizzaException() {
 	}
 
-	public DeletePizzaException(String error) {
-		super(error);
+	public DeletePizzaException(String error, Exception e) {
+		super(error, e);
 	}
 
 }

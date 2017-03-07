@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.reflections.Reflections;
 
+import dta.pizzeria.exception.StockageException;
 import dta.pizzeria.ihm.OptionMenu;
 
 public class Menu {
@@ -50,7 +51,7 @@ public class Menu {
 
 	}
 
-	public void lancer() {
+	public void lancer() throws StockageException {
 
 		do {
 			this.afficher();

@@ -1,4 +1,4 @@
-package dta.pizzera_ihm;
+package dta.pizzeria.ihm;
 
 public abstract class Action {
 	protected String nom;

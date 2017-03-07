@@ -1,4 +1,4 @@
-package dta.pizzera_ihm;
+package dta.pizzeria.ihm;
 
 import java.util.List;
 import java.util.Map;
@@ -8,7 +8,8 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.reflections.Reflections;
-import dta.pizzera_ihm.OptionMenu;
+
+import dta.pizzeria.ihm.OptionMenu;
 
 public class Menu {
 
@@ -23,20 +24,21 @@ public class Menu {
 		Set<Class<? extends Action>> actionClasses = reflections.getSubTypesOf(Action.class);
 
 		List<? extends Action> listActions = actionClasses.stream()
-				.filter(actions -> actions.getAnnotation(OptionMenu.class) != null).map(actions -> {
+				.filter(actionsCls -> actionsCls.getAnnotation(OptionMenu.class) != null).map(actionsCls -> {
 
 					try {
-						return actions.newInstance();
+						return actionsCls.newInstance();
 					} catch (InstantiationException | IllegalAccessException e) {
 						e.printStackTrace();
+						return null;
 					}
-					return null;
 
 				}).collect(Collectors.toList());
 
 		for (int i = 0; i < listActions.size(); i++) {
 			actions.put(i, listActions.get(i));
 		}
+		this.ihmTools = ihmTools;
 	}
 
 	public void afficher() {

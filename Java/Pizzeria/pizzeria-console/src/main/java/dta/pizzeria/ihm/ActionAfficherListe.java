@@ -1,7 +1,8 @@
-package dta.pizzera_ihm;
+package dta.pizzeria.ihm;
 
 import dta.pizzeria_model.Pizza;
 
+@OptionMenu
 public class ActionAfficherListe extends Action {
 
 	public ActionAfficherListe(IhmTools ihmTools) {

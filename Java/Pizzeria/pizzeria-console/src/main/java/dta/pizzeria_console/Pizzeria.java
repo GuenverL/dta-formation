@@ -2,9 +2,8 @@ package dta.pizzeria_console;
 
 import java.util.ResourceBundle;
 
-
-import dta.pizzera_ihm.IhmTools;
-import dta.pizzera_ihm.Menu;
+import dta.pizzeria.ihm.IhmTools;
+import dta.pizzeria.ihm.Menu;
 import dta.pizzeria_dao.IDao;
 import dta.pizzeria_model.Pizza;
 

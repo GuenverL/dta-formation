@@ -1,4 +1,4 @@
-package dta.pizzera_ihm;
+package dta.pizzeria.ihm;
 
 import dta.pizzeria.exception.StockageException;
 import dta.pizzeria_model.CategoriePizza;

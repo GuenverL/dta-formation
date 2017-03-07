@@ -1,5 +1,6 @@
-package dta.pizzera_ihm;
+package dta.pizzeria.ihm;
 
+@OptionMenu
 public class ActionQuitter extends Action {
 	public ActionQuitter(IhmTools ihmTools) {
 		super(ihmTools);

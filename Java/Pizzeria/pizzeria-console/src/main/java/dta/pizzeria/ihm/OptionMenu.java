@@ -1,4 +1,4 @@
-package dta.pizzera_ihm;
+package dta.pizzeria.ihm;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

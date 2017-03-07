@@ -2,11 +2,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>dta</groupId>
-        <artifactId>pizzeria-app</artifactId>
+        <artifactId>loic-pizzeria-app</artifactId>
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>pizzeria-console</artifactId>
+    <artifactId>loic-pizzeria-console</artifactId>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -59,11 +59,13 @@
         </dependency>
         <dependency>
             <groupId>dta</groupId>
-            <artifactId>pizzeria-model</artifactId>
+            <artifactId>loic-pizzeria-model</artifactId>
+            <version>1</version>
         </dependency>
         <dependency>
             <groupId>dta</groupId>
-            <artifactId>pizzeria-dao</artifactId>
+            <artifactId>loic-pizzeria-dao</artifactId>
+            <version>1</version>
         </dependency>
         <dependency>
             <groupId>org.reflections</groupId>
@@ -71,5 +73,4 @@
         </dependency>
     </dependencies>
     <version>1</version>
-    <groupId>dta</groupId>
 </project>

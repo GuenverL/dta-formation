@@ -39,7 +39,7 @@ public class Pizza implements Comparable<Pizza> {
 					sb.append(field.get(this).toString());
 					sb.append("  ");
 				} catch (IllegalArgumentException | IllegalAccessException e) {
-					System.out.println("ToString error");
+					throw new RuntimeException("ToString error", e);
 				}
 		}
 		return sb.toString();

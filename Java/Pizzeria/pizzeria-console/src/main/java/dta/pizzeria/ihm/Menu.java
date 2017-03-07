@@ -30,7 +30,7 @@ public class Menu {
 					try {
 						return actionsCls.newInstance();
 					} catch (InstantiationException | IllegalAccessException e) {
-						return null;
+						throw new RuntimeException("Menu error", e);
 					}
 
 				}).collect(Collectors.toList());

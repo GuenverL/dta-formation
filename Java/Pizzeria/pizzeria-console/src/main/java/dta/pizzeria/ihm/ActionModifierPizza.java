@@ -37,7 +37,7 @@ public class ActionModifierPizza extends Action {
 			try {
 				ihmTools.getDao().update(oldCode, new Pizza(code, nom, prix, CategoriePizza.SANS_VIANDE));
 			} catch (StockageException e) {
-				System.out.println("\nCette pizza n'existe pas\n");
+				throw new StockageException(e.getMessage(), e);
 			}
 		}
 	}

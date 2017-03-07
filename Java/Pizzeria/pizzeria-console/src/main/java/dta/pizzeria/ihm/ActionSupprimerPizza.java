@@ -23,7 +23,7 @@ public class ActionSupprimerPizza extends Action {
 			try {
 				ihmTools.getDao().delete(code);
 			} catch (StockageException e) {
-				System.out.println("\nCette pizza n'existe pas\n");
+				throw new StockageException(e.getMessage(), e);
 			}
 		}
 	}

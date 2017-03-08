@@ -1,9 +1,8 @@
 package dta.chat.model.socket;
 
 public class ChatSocketProxy {
-	private ChatSocket socket;
-
+	@SuppressWarnings("resource")
 	public ChatSocketProxy(String ip, int port) throws ChatClientException {
-		this.socket = new ChatSocketImpl(ip, port);
+		new ChatSocketImpl(ip, port);
 	}
 }

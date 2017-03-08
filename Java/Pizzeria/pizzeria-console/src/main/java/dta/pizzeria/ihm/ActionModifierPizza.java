@@ -14,7 +14,8 @@ public class ActionModifierPizza extends Action {
 	@Override
 	public void faire() throws StockageException {
 		
-		String code, nom;
+		String code;
+		String nom;
 		double prix;
 		
 		for (Pizza pizza : ihmTools.getDao().findAll()) {

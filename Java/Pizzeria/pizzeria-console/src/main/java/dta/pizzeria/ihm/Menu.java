@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.reflections.Reflections;
@@ -16,7 +15,6 @@ public class Menu {
 
 	private IhmTools ihmTools;
 	private Map<Integer, Action> actions = new TreeMap<>();
-	private int choix;
 
 	public Menu(IhmTools ihmTools) {
 
@@ -30,7 +28,7 @@ public class Menu {
 					try {
 						return actionsCls.newInstance();
 					} catch (InstantiationException | IllegalAccessException e) {
-						throw new RuntimeException("Menu error", e);
+						throw new StockageException("Menu error", e);
 					}
 
 				}).collect(Collectors.toList());
@@ -51,6 +49,7 @@ public class Menu {
 	}
 
 	public void lancer() throws StockageException {
+		int choix;
 
 		do {
 			this.afficher();

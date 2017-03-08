@@ -5,6 +5,8 @@ import java.lang.reflect.Field;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import dta.pizzeria.exception.StockageException;
+
 public class Pizza implements Comparable<Pizza> {
 
 	@ToString(uppercase = true)
@@ -39,7 +41,7 @@ public class Pizza implements Comparable<Pizza> {
 					sb.append(field.get(this).toString());
 					sb.append("  ");
 				} catch (IllegalArgumentException | IllegalAccessException e) {
-					throw new RuntimeException("ToString error", e);
+					throw new StockageException("ToString error", e);
 				}
 		}
 		return sb.toString();

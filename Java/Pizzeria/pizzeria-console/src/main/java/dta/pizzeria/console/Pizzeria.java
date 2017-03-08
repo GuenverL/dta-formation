@@ -17,6 +17,7 @@ public class Pizzeria {
 
 		ResourceBundle bundle = ResourceBundle.getBundle("application");
 
+		@SuppressWarnings("unchecked")
 		IDao<Pizza> instanceDaoImpl = (IDao<Pizza>) Class.forName(bundle.getString("daoImpl")).newInstance();
 
 		IhmTools ihmTools = new IhmTools(instanceDaoImpl);

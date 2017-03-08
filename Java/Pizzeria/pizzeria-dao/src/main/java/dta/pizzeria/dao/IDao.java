@@ -2,8 +2,6 @@ package dta.pizzeria.dao;
 
 import java.util.List;
 
-import dta.pizzeria.exception.StockageException;
-
 public interface IDao<T> {
 
 	List<T> findAll();

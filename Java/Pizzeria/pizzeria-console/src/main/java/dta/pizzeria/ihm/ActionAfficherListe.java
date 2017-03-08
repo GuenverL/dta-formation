@@ -1,6 +1,5 @@
 package dta.pizzeria.ihm;
 
-import dta.pizzeria.exception.StockageException;
 import dta.pizzeria.model.Pizza;
 
 @OptionMenu

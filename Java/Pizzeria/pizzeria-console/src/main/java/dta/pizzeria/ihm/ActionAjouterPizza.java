@@ -12,7 +12,8 @@ public class ActionAjouterPizza extends Action {
 
 	@Override
 	public void faire() {
-		String code, nom;
+		String code;
+		String nom;
 		double prix;
 		int choixcat;
 		CategoriePizza[] cats = CategoriePizza.values();

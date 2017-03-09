@@ -15,6 +15,7 @@ public class Menu {
 		actions.put(2, new ActionAjouterPizza(ihmTools));
 		actions.put(3, new ActionModifierPizza(ihmTools));
 		actions.put(4, new ActionSupprimerPizza(ihmTools));
+		actions.put(5, new ActionImporterPizza(ihmTools));
 		actions.put(99, new ActionQuitter(ihmTools));
 		 
 	}

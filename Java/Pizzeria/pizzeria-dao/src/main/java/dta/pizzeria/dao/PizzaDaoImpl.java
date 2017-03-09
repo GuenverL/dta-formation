@@ -32,7 +32,6 @@ public class PizzaDaoImpl implements IDao<Pizza> {
 		return pizzas;
 	}
 
-	@Override
 	public int find(String code) {
 		int index = -1;
 		for (Pizza pizza : pizzas) {
@@ -71,7 +70,9 @@ public class PizzaDaoImpl implements IDao<Pizza> {
 		}
 	}
 
+
 	@Override
-	public void close() {//
+	public void importPizzas() {
+		System.out.println("Veuillez changez de configuration");
 	}
 }

@@ -28,6 +28,5 @@ public class Pizzeria {
 		menu.lancer();
 
 		ihmTools.getSc().close();
-		ihmTools.getDao().close();
 	}
 }

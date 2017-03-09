@@ -18,6 +18,7 @@ public class Pizza implements Comparable<Pizza> {
 	@ToString
 	private double prix;
 
+	@ToString
 	private CategoriePizza categorie;
 
 	public Pizza(String code, String nom, double prix, CategoriePizza categorie) {
@@ -39,7 +40,7 @@ public class Pizza implements Comparable<Pizza> {
 			if(anno!=null)
 				try {
 					sb.append(field.get(this).toString());
-					sb.append("  ");
+					sb.append(" ");
 				} catch (IllegalArgumentException | IllegalAccessException e) {
 					throw new StockageException("ToString error", e);
 				}

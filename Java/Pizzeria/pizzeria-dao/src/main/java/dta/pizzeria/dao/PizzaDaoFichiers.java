@@ -21,27 +21,22 @@ public class PizzaDaoFichiers implements IDao<Pizza> {
 	public List<Pizza> findAll() {
 		List<Pizza> pizzas = new ArrayList<>();
 		try {
-			Files.list(Paths.get("data")).forEach(path -> pizzas.addAll(traitement(path, pizzas)));
+			Files.list(Paths.get("data")).forEach(path -> pizzas.add(traitement(path)));
 		} catch (IOException e) {
 			throw new StockageException("Search error", e);
 		}
 		return pizzas;
 	}
 
-	public List<Pizza> traitement(Path path, List<Pizza> pizzas) {
+	public Pizza traitement(Path path) {
 		String[] pizzaStr;
 		try {
-			pizzaStr = Files.readAllLines(path).get(0).split(";");
-			pizzas.add(new Pizza(pizzaStr[0], pizzaStr[1], Double.parseDouble(pizzaStr[2]), CategoriePizza.VIANDE));
+			pizzaStr = Files.readAllLines(path).get(0).split(" ");
+			return new Pizza(pizzaStr[0], pizzaStr[1], Double.parseDouble(pizzaStr[2]),
+					CategoriePizza.valueOf(pizzaStr[3].toUpperCase()));
 		} catch (IOException e) {
 			throw new StockageException("error", e);
 		}
-		return pizzas;
-	}
-
-	@Override
-	public int find(String code) {
-		return 0;
 	}
 
 
@@ -70,7 +65,8 @@ public class PizzaDaoFichiers implements IDao<Pizza> {
 	}
 
 	@Override
-	public void close() {//
+	public void importPizzas() {
+		System.out.println("Veuillez changez de configuration");
 	}
 
 }

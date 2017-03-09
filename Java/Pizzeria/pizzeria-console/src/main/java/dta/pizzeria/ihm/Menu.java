@@ -2,7 +2,6 @@ package dta.pizzeria.ihm;
 
 import java.util.Map;
 import java.util.TreeMap;
-import dta.pizzeria.exception.StockageException;
 
 public class Menu {
 

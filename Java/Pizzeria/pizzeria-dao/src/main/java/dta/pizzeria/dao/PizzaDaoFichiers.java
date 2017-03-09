@@ -21,9 +21,7 @@ public class PizzaDaoFichiers implements IDao<Pizza> {
 	public List<Pizza> findAll() {
 		List<Pizza> pizzas = new ArrayList<>();
 		try {
-			Files.list(Paths.get("data")).forEach(path -> {
-				pizzas.addAll(traitement(path, pizzas));
-			});
+			Files.list(Paths.get("data")).forEach(path -> pizzas.addAll(traitement(path, pizzas)));
 		} catch (IOException e) {
 			throw new StockageException("Search error", e);
 		}
@@ -57,7 +55,7 @@ public class PizzaDaoFichiers implements IDao<Pizza> {
 	}
 
 	@Override
-	public void update(String codePizza, Pizza pizza) throws StockageException {
+	public void update(String codePizza, Pizza pizza) {
 		delete(codePizza);
 		saveNew(pizza);
 	}

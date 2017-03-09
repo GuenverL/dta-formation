@@ -19,7 +19,7 @@
             </activation>
             <properties>
                 <name>daoImpl</name>
-                <daoImpl>dta.pizzeria.dao.PizzaDaoImpl</daoImpl>
+                <daoImpl>dta.pizzeria.dao.PizzaDaoJDBC</daoImpl>
             </properties>
         </profile>
         <profile>

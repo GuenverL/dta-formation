@@ -8,25 +8,25 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
+
 import dta.pizzeria.exception.StockageException;
 import dta.pizzeria.model.CategoriePizza;
 import dta.pizzeria.model.Pizza;
 
 public class PizzaDaoJDBC implements IDao<Pizza> {
 	
+	private ResourceBundle bundle = ResourceBundle.getBundle("jdbc");
+
 	private Connection connection;
 
 	public PizzaDaoJDBC() {
 
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			throw new StockageException("Driver error", e);
-		}
-
-		try {
-			this.connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/pizzadb", "root", "");
-		} catch (SQLException e) {
+			this.connection = DriverManager.getConnection(bundle.getString("url"), bundle.getString("user"),
+					bundle.getString("password"));
+		} catch (SQLException | ClassNotFoundException e) {
 			throw new StockageException("DriveManager error", e);
 		}
 	}

@@ -1,5 +1,7 @@
 package dta.pizzeria.console;
 
+import java.util.ResourceBundle;
+
 import dta.pizzeria.dao.IDao;
 import dta.pizzeria.dao.PizzaDaoJDBC;
 import dta.pizzeria.ihm.IhmTools;
@@ -14,8 +16,10 @@ public class Pizzeria {
 	public static void main(String[] args)
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 
+		ResourceBundle bundle = ResourceBundle.getBundle("application");
 
-		IDao<Pizza> instanceDaoImpl = new PizzaDaoJDBC();
+		IDao<Pizza> instanceDaoImpl = (IDao<Pizza>) Class.forName(bundle.getString("daoImpl")).newInstance();
+
 		IhmTools ihmTools = new IhmTools(instanceDaoImpl);
 		new Pizza(null, null, 0, null).hashCode();
 

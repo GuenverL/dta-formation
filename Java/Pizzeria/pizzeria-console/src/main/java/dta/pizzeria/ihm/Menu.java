@@ -1,15 +1,8 @@
 package dta.pizzeria.ihm;
 
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
-
-import org.reflections.Reflections;
-
 import dta.pizzeria.exception.StockageException;
-import dta.pizzeria.ihm.OptionMenu;
 
 public class Menu {
 
@@ -18,25 +11,11 @@ public class Menu {
 
 	public Menu(IhmTools ihmTools) {
 
-		Reflections reflections = new Reflections("my.project");
-
-		Set<Class<? extends Action>> actionClasses = reflections.getSubTypesOf(Action.class);
-
-		List<? extends Action> listActions = actionClasses.stream()
-				.filter(actionsCls -> actionsCls.getAnnotation(OptionMenu.class) != null).map(actionsCls -> {
-
-					try {
-						return actionsCls.newInstance();
-					} catch (InstantiationException | IllegalAccessException e) {
-						throw new StockageException("Menu error", e);
-					}
-
-				}).collect(Collectors.toList());
-
-		for (int i = 0; i < listActions.size(); i++) {
-			actions.put(i, listActions.get(i));
-		}
 		this.ihmTools = ihmTools;
+		actions.put(1, new ActionAfficherListe(ihmTools));
+		actions.put(2, new ActionAjouterPizza(ihmTools));
+		actions.put(99, new ActionQuitter(ihmTools));
+		 
 	}
 
 	public void afficher() {

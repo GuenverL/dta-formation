@@ -90,4 +90,8 @@ public class Pizza implements Comparable<Pizza> {
 	       append(this.categorie).
 	       toHashCode();
 	}
+
+	public String getNom() {
+		return nom;
+	}
 }

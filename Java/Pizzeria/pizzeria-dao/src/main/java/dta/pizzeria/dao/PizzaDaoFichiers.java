@@ -65,4 +65,8 @@ public class PizzaDaoFichiers implements IDao<Pizza> {
 		}
 	}
 
+	@Override
+	public void close() {//
+	}
+
 }

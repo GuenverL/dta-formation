@@ -15,7 +15,7 @@ public class PizzaDaoImpl implements IDao<Pizza> {
 	private List<Pizza> pizzas = new ArrayList<>();
 
 	public PizzaDaoImpl() {
-		pizzas.add(new Pizza("PEP", "P�p�roni", 12.50, CategoriePizza.VIANDE));
+		pizzas.add(new Pizza("PEP", "Peperoni", 12.50, CategoriePizza.VIANDE));
 		pizzas.add(new Pizza("MAR", "Margherita", 14.00, CategoriePizza.VIANDE));
 		pizzas.add(new Pizza("REI", "La Reine", 11.50, CategoriePizza.VIANDE));
 		pizzas.add(new Pizza("FRO", "Les 4 fromages", 12.00, CategoriePizza.SANS_VIANDE));
@@ -69,5 +69,9 @@ public class PizzaDaoImpl implements IDao<Pizza> {
 		} else {
 			throw new DeletePizzaException(codePizza, null);
 		}
+	}
+
+	@Override
+	public void close() {//
 	}
 }

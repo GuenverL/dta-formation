@@ -14,4 +14,6 @@ public interface IDao<T> {
 
 	void delete(String codePizza);
 
+	void close();
+
 }

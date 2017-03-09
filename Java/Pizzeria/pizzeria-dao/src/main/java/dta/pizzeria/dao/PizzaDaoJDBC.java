@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import dta.pizzeria.exception.StockageException;
@@ -34,19 +35,19 @@ public class PizzaDaoJDBC implements IDao<Pizza> {
 	public List<Pizza> findAll() {
 		List<Pizza> res = new ArrayList<>();
 		ResultSet reqRes;
-		try {
-			reqRes = connection.prepareStatement("SELECT * FROM pizza").executeQuery();
+		try (Statement statement = connection.createStatement()) {
+			reqRes = statement.executeQuery("SELECT * FROM pizza");
 
 			while (reqRes.next()) {
 				res.add(new Pizza(reqRes.getString("code"), reqRes.getString("nom"), reqRes.getDouble("prix"),
 						CategoriePizza.valueOf(reqRes.getString("categorie").toUpperCase())));
 			}
 			reqRes.close();
+			return res;
 
 		} catch (SQLException e) {
 			throw new StockageException("Search error", e);
 		}
-		return res;
 
 	}
 

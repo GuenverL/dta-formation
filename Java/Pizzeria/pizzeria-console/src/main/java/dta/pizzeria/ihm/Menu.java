@@ -14,6 +14,8 @@ public class Menu {
 		this.ihmTools = ihmTools;
 		actions.put(1, new ActionAfficherListe(ihmTools));
 		actions.put(2, new ActionAjouterPizza(ihmTools));
+		actions.put(3, new ActionModifierPizza(ihmTools));
+		actions.put(4, new ActionSupprimerPizza(ihmTools));
 		actions.put(99, new ActionQuitter(ihmTools));
 		 
 	}

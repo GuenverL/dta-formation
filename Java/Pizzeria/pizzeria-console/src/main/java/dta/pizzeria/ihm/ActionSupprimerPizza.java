@@ -11,7 +11,7 @@ public class ActionSupprimerPizza extends Action {
 	}
 
 	@Override
-	public void faire() throws StockageException {
+	public void faire() {
 		for (Pizza pizza : ihmTools.getDao().findAll()) {
 			System.out.println(pizza.toString());
 		}

@@ -14,13 +14,6 @@ public class Pizzeria {
 	public static void main(String[] args)
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 
-		/*
-		 * ResourceBundle bundle = ResourceBundle.getBundle("application");
-		 * 
-		 * @SuppressWarnings("unchecked") IDao<Pizza> instanceDaoImpl =
-		 * (IDao<Pizza>)
-		 * Class.forName(bundle.getString("daoImpl")).newInstance();
-		 */
 
 		IDao<Pizza> instanceDaoImpl = new PizzaDaoJDBC();
 		IhmTools ihmTools = new IhmTools(instanceDaoImpl);

@@ -3,6 +3,7 @@ package dta.pizzeria.dao;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,20 +22,25 @@ public class PizzaDaoFichiers implements IDao<Pizza> {
 		List<Pizza> pizzas = new ArrayList<>();
 		try {
 			Files.list(Paths.get("data")).forEach(path -> {
-				String[] pizzaStr;
-				try {
-					pizzaStr = Files.readAllLines(path).get(0).split(";");
-					pizzas.add(new Pizza(pizzaStr[0], pizzaStr[1], Double.parseDouble(pizzaStr[2]),
-							CategoriePizza.VIANDE));
-				} catch (IOException e) {
-					throw new StockageException("error", e);
-				}
+				pizzas.addAll(traitement(path, pizzas));
 			});
 		} catch (IOException e) {
 			throw new StockageException("Search error", e);
 		}
 		return pizzas;
 	}
+
+	public List<Pizza> traitement(Path path, List<Pizza> pizzas) {
+		String[] pizzaStr;
+		try {
+			pizzaStr = Files.readAllLines(path).get(0).split(";");
+			pizzas.add(new Pizza(pizzaStr[0], pizzaStr[1], Double.parseDouble(pizzaStr[2]), CategoriePizza.VIANDE));
+		} catch (IOException e) {
+			throw new StockageException("error", e);
+		}
+		return pizzas;
+	}
+
 	@Override
 	public int find(String code) {
 		return 0;

@@ -29,7 +29,7 @@ public class Menu {
 
 	}
 
-	public void lancer() throws StockageException {
+	public void lancer() {
 		int choix;
 
 		do {

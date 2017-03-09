@@ -108,6 +108,7 @@ public class PizzaDaoJDBC implements IDao<Pizza> {
 		}
 	}
 
+	@Override
 	public void close() {
 		try {
 			connection.close();

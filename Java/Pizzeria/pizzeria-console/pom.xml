@@ -4,7 +4,7 @@
     <parent>
         <groupId>dta</groupId>
         <artifactId>loic-pizzeria-app</artifactId>
-        <version>1.0.0</version>
+        <version>1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>loic-pizzeria-console</artifactId>
@@ -61,12 +61,12 @@
         <dependency>
             <groupId>dta</groupId>
             <artifactId>loic-pizzeria-model</artifactId>
-            <version>1</version>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>dta</groupId>
             <artifactId>loic-pizzeria-dao</artifactId>
-            <version>1</version>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>org.reflections</groupId>
@@ -75,7 +75,8 @@
         <dependency>
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
-    <version>1</version>
+    <version>1.0</version>
 </project>

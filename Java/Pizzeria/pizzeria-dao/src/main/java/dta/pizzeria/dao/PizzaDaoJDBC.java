@@ -1,24 +1,27 @@
 package dta.pizzeria.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.io.IOException;
+import java.nio.file.*;
+import java.sql.*;
+import java.util.*;
+import org.apache.commons.collections4.ListUtils;
 
 import dta.pizzeria.exception.StockageException;
 import dta.pizzeria.model.CategoriePizza;
 import dta.pizzeria.model.Pizza;
 
 public class PizzaDaoJDBC implements IDao<Pizza> {
-	
-	private ResourceBundle bundle = ResourceBundle.getBundle("jdbc");
 
-	public PizzaDaoJDBC() {
+	private Connection createNewConnection() {
+		ResourceBundle bundle = ResourceBundle.getBundle("jdbc");
+		try {
+			Class.forName(bundle.getString("driver"));
+			return DriverManager.getConnection(bundle.getString("url"), bundle.getString("user"),
+					bundle.getString("password"));
+		} catch (SQLException | ClassNotFoundException e) {
+			throw new StockageException("DriveManager error", e);
+		}
+
 	}
 
 	@Override
@@ -38,24 +41,6 @@ public class PizzaDaoJDBC implements IDao<Pizza> {
 			throw new StockageException("Search error", e);
 		}
 
-	}
-
-	private Connection createNewConnection() {
-
-		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-			Connection connection = DriverManager.getConnection(bundle.getString("url"), bundle.getString("user"),
-					bundle.getString("password"));
-			return connection;
-		} catch (SQLException | ClassNotFoundException e) {
-			throw new StockageException("DriveManager error", e);
-		}
-
-	}
-
-	@Override
-	public int find(String code) {
-		return 0;
 	}
 
 	@Override
@@ -109,13 +94,48 @@ public class PizzaDaoJDBC implements IDao<Pizza> {
 		}
 	}
 
-	@Override
-	public void close() {
+	public void importPizzas() {
+		List<Pizza> pizzas = new ArrayList<>();
+
 		try {
-			Connection connection = createNewConnection();
-			connection.close();
+			Files.list(Paths.get("data")).forEach(path -> pizzas.add(traitement(path)));
+		} catch (IOException e) {
+			throw new StockageException("Search error", e);
+		}
+
+		List<List<Pizza>> parts = ListUtils.partition(pizzas, 3);
+
+		try (Connection connection = createNewConnection();) {
+			connection.setAutoCommit(false);
+			for (List<Pizza> part : parts) {
+				for (Pizza pizza : part) {
+					PreparedStatement reqRes = connection
+							.prepareStatement("INSERT INTO pizza (code,nom,prix,categorie) VALUES(?,?,?,?)");
+
+					reqRes.setString(1, pizza.getCode());
+					reqRes.setString(2, pizza.getNom());
+					reqRes.setDouble(3, pizza.getPrix());
+					reqRes.setString(4, pizza.getCategorie().toString());
+					if (reqRes.executeUpdate() == 0)
+						connection.rollback();
+				}
+				connection.commit();
+			}
+
 		} catch (SQLException e) {
-			throw new StockageException("Connexion close error", e);
+			throw new StockageException("Import error", e);
+		}
+
+	}
+
+	public Pizza traitement(Path path) {
+		String[] pizzaStr;
+		try {
+			pizzaStr = Files.readAllLines(path).get(0).split(" ");
+			return new Pizza(pizzaStr[0], pizzaStr[1], Double.parseDouble(pizzaStr[2]),
+					CategoriePizza.valueOf(pizzaStr[3].toUpperCase()));
+		} catch (IOException e) {
+			throw new StockageException("error", e);
 		}
 	}
 

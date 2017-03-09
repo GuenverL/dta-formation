@@ -3,7 +3,7 @@
     <parent>
         <groupId>dta</groupId>
         <artifactId>loic-pizzeria-app</artifactId>
-        <version>1.0.0</version>
+        <version>1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>loic-pizzeria-dao</artifactId>
@@ -18,8 +18,12 @@
         <dependency>
             <groupId>dta</groupId>
             <artifactId>loic-pizzeria-model</artifactId>
-            <version>1</version>
+            <version>1.0</version>
         </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+            </dependency>
     </dependencies>
-    <version>1</version>
+    <version>1.0</version>
 </project>

@@ -105,12 +105,13 @@ public class PizzaDaoJDBC implements IDao<Pizza> {
 
 		List<List<Pizza>> parts = ListUtils.partition(pizzas, 3);
 
-		try (Connection connection = createNewConnection();) {
+		try (Connection connection = createNewConnection();
+				PreparedStatement reqRes = connection
+						.prepareStatement("INSERT INTO pizza (code,nom,prix,categorie) VALUES(?,?,?,?)");) {
 			connection.setAutoCommit(false);
 			for (List<Pizza> part : parts) {
 				for (Pizza pizza : part) {
-					PreparedStatement reqRes = connection
-							.prepareStatement("INSERT INTO pizza (code,nom,prix,categorie) VALUES(?,?,?,?)");
+
 
 					reqRes.setString(1, pizza.getCode());
 					reqRes.setString(2, pizza.getNom());

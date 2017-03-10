@@ -3,7 +3,6 @@ package dta.pizzeria.console;
 import java.util.ResourceBundle;
 
 import dta.pizzeria.dao.IDao;
-import dta.pizzeria.dao.PizzaDaoJDBC;
 import dta.pizzeria.ihm.IhmTools;
 import dta.pizzeria.ihm.Menu;
 import dta.pizzeria.model.Pizza;

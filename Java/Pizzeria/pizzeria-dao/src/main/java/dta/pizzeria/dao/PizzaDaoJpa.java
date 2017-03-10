@@ -1,6 +1,9 @@
 package dta.pizzeria.dao;
 
 import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+
 import javax.persistence.*;
 
 import dta.pizzeria.model.Pizza;
@@ -15,49 +18,44 @@ public class PizzaDaoJpa implements IDao<Pizza> {
 
 	@Override
 	public List<Pizza> findAll() {
-		return emf.createEntityManager().createQuery("SELECT P FROM Pizza P", Pizza.class).getResultList();
+		return emf.createEntityManager().createNamedQuery("pizza.findAll", Pizza.class).getResultList();
+	}
+
+	public void emGestion(Consumer<EntityManager> cem) {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction et = em.getTransaction();
+		et.begin();
+		cem.accept(em);
+		et.commit();
+		em.close();
 	}
 
 	@Override
 	public void saveNew(Pizza pizza) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction et = em.getTransaction();
-		et.begin();
-		em.persist(pizza);
-		et.commit();
-		em.close();
+		emGestion(em -> em.persist(pizza));
 	}
 
 	@Override
 	public void update(String codePizza, Pizza pizza) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction et = em.getTransaction();
-		et.begin();
-		TypedQuery<Pizza> query = em.createQuery("SELECT p FROM Pizza WHERE p.code = :code", Pizza.class);
-		query.setParameter("code", codePizza);
-		Pizza oldPizza = query.getSingleResult();
-		if (oldPizza != null) {
-			pizza.setId(oldPizza.getId());
-			em.merge(pizza);
-		}
-		et.commit();
-		em.close();
+		emGestion(em -> {
+			Pizza oldPizza = em.createNamedQuery("pizza.findPizzaByCode", Pizza.class).setParameter("code", codePizza)
+					.getSingleResult();
+			if (oldPizza != null) {
+				pizza.setId(oldPizza.getId());
+				em.merge(pizza);
+			}
+		});
 	}
 
 	@Override
 	public void delete(String codePizza) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction et = em.getTransaction();
-		et.begin();
-		TypedQuery<Pizza> query = em.createQuery("SELECT p FROM Pizza WHERE p.code = :code", Pizza.class);
-		query.setParameter("code", codePizza);
-		Pizza pizza = query.getSingleResult();
-		if (pizza != null) {
-			em.remove(pizza);
-		}
-
-		et.commit();
-		em.close();
+		emGestion(em -> {
+			Pizza pizza = em.createNamedQuery("pizza.findPizzaByCode", Pizza.class).setParameter("code", codePizza)
+					.getSingleResult();
+			if (pizza != null) {
+				em.remove(pizza);
+			}
+		});
 	}
 
 }

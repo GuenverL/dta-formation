@@ -1,6 +1,7 @@
 package dta.pizzeria.console;
 
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
 import dta.pizzeria.dao.IDao;
 import dta.pizzeria.ihm.IhmTools;
@@ -15,12 +16,13 @@ public class Pizzeria {
 	public static void main(String[] args)
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 
+		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
+
 		ResourceBundle bundle = ResourceBundle.getBundle("application");
 
 		IDao<Pizza> instanceDaoImpl = (IDao<Pizza>) Class.forName(bundle.getString("daoImpl")).newInstance();
 
 		IhmTools ihmTools = new IhmTools(instanceDaoImpl);
-		new Pizza(null, null, 0, null).hashCode();
 
 		Menu menu = new Menu(ihmTools);
 

@@ -111,8 +111,6 @@ public class PizzaDaoJDBC implements IDao<Pizza> {
 			connection.setAutoCommit(false);
 			for (List<Pizza> part : parts) {
 				for (Pizza pizza : part) {
-
-
 					reqRes.setString(1, pizza.getCode());
 					reqRes.setString(2, pizza.getNom());
 					reqRes.setDouble(3, pizza.getPrix());
@@ -129,7 +127,7 @@ public class PizzaDaoJDBC implements IDao<Pizza> {
 
 	}
 
-	public Pizza traitement(Path path) {
+	private Pizza traitement(Path path) {
 		String[] pizzaStr;
 		try {
 			pizzaStr = Files.readAllLines(path).get(0).split(" ");

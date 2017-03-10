@@ -17,6 +17,8 @@ public class ActionModifierPizza extends Action {
 		String code;
 		String nom;
 		double prix;
+		int choixcat;
+		CategoriePizza[] cats = CategoriePizza.values();
 		
 		for (Pizza pizza : ihmTools.getDao().findAll()) {
 			System.out.println(pizza.toString());
@@ -35,8 +37,15 @@ public class ActionModifierPizza extends Action {
 			System.out.println("Veuiller saisir le prix");
 			prix = ihmTools.getSc().nextDouble();
 
+			System.out.println("Veuiller saisir un numero de categorie : ");
+			for (CategoriePizza cat : cats) {
+				System.out.print(cat.ordinal() + " : ");
+				System.out.println(cat.toString());
+			}
+			choixcat = ihmTools.getSc().nextInt();
+
 			try {
-				ihmTools.getDao().update(oldCode, new Pizza(code, nom, prix, CategoriePizza.SANS_VIANDE));
+				ihmTools.getDao().saveNew(new Pizza(code, nom, prix, cats[choixcat]));
 			} catch (StockageException e) {
 				throw new StockageException(e.getMessage(), e);
 			}

@@ -8,4 +8,8 @@ public class StockageException extends RuntimeException {
 		super(error, e);
 	}
 
+	public StockageException(String string) {
+		super(string);
+	}
+
 }

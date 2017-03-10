@@ -2,30 +2,37 @@ package dta.pizzeria.model;
 
 import java.lang.reflect.Field;
 
+import javax.persistence.*;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import dta.pizzeria.exception.StockageException;
 
+@Entity
 public class Pizza implements Comparable<Pizza> {
 
-	@ToString(uppercase = true)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	@Column(name = "code", length = 5, nullable = false, unique = true)
 	private String code;
-
-	@ToString
+	@Column(name = "nom", length = 50, nullable = false)
 	private String nom;
-
-	@ToString
+	@Column(name = "prix", nullable = false)
 	private double prix;
-
-	@ToString
+	@Enumerated(EnumType.STRING)
+	@Column(name = "categorie", nullable = false)
 	private CategoriePizza categorie;
 
+	public Pizza() {
+	}
+
 	public Pizza(String code, String nom, double prix, CategoriePizza categorie) {
-		this.code = code;
+		this.code = code.toUpperCase();
 		this.nom = nom;
 		this.prix = prix;
-		this.categorie = categorie;
+		this.categorie = CategoriePizza.valueOf(categorie.toString().toUpperCase());
 	}
 
 	public String getCode() {
@@ -36,8 +43,6 @@ public class Pizza implements Comparable<Pizza> {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		for (Field field : this.getClass().getDeclaredFields()) {
-			ToString anno = field.getAnnotation(ToString.class);
-			if(anno!=null)
 				try {
 					sb.append(field.get(this).toString());
 					sb.append(" ");
@@ -94,5 +99,52 @@ public class Pizza implements Comparable<Pizza> {
 
 	public String getNom() {
 		return nom;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/**
+	 * @param code
+	 *            the code to set
+	 */
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	/**
+	 * @param nom
+	 *            the nom to set
+	 */
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	/**
+	 * @param prix
+	 *            the prix to set
+	 */
+	public void setPrix(double prix) {
+		this.prix = prix;
+	}
+
+	/**
+	 * @param categorie
+	 *            the categorie to set
+	 */
+	public void setCategorie(CategoriePizza categorie) {
+		this.categorie = categorie;
 	}
 }

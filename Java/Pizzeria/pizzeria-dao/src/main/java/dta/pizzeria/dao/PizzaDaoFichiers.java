@@ -28,7 +28,7 @@ public class PizzaDaoFichiers implements IDao<Pizza> {
 		return pizzas;
 	}
 
-	public Pizza traitement(Path path) {
+	private Pizza traitement(Path path) {
 		String[] pizzaStr;
 		try {
 			pizzaStr = Files.readAllLines(path).get(0).split(" ");
@@ -62,11 +62,6 @@ public class PizzaDaoFichiers implements IDao<Pizza> {
 		} catch (IOException e) {
 			throw new DeletePizzaException("delete error", e);
 		}
-	}
-
-	@Override
-	public void importPizzas() {
-		System.out.println("Veuillez changez de configuration");
 	}
 
 }

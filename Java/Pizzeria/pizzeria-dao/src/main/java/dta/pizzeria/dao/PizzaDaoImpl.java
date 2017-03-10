@@ -69,10 +69,4 @@ public class PizzaDaoImpl implements IDao<Pizza> {
 			throw new DeletePizzaException(codePizza, null);
 		}
 	}
-
-
-	@Override
-	public void importPizzas() {
-		System.out.println("Veuillez changez de configuration");
-	}
 }

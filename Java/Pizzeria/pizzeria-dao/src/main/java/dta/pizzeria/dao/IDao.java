@@ -2,6 +2,8 @@ package dta.pizzeria.dao;
 
 import java.util.List;
 
+import dta.pizzeria.exception.StockageException;
+
 public interface IDao<T> {
 
 	List<T> findAll();
@@ -12,6 +14,8 @@ public interface IDao<T> {
 
 	void delete(String codePizza);
 
-	void importPizzas();
+	default void importPizzas() {
+		throw new StockageException("Veuillez changez de configuration");
+	}
 
 }

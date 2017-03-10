@@ -19,7 +19,7 @@
             </activation>
             <properties>
                 <name>daoImpl</name>
-                <daoImpl>dta.pizzeria.dao.PizzaDaoJDBC</daoImpl>
+                <daoImpl>dta.pizzeria.dao.PizzaDaoJpa</daoImpl>
             </properties>
         </profile>
         <profile>
@@ -75,7 +75,10 @@
         <dependency>
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>
-            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
         </dependency>
     </dependencies>
     <version>1.0</version>

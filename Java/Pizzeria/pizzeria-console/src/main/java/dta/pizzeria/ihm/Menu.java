@@ -3,11 +3,18 @@ package dta.pizzeria.ihm;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * @author ETY 11
+ *
+ */
 public class Menu {
 
 	private IhmTools ihmTools;
 	private Map<Integer, Action> actions = new TreeMap<>();
 
+	/**
+	 * @param ihmTools
+	 */
 	public Menu(IhmTools ihmTools) {
 
 		this.ihmTools = ihmTools;
@@ -20,6 +27,9 @@ public class Menu {
 		 
 	}
 
+	/**
+	 * 
+	 */
 	public void afficher() {
 		System.out.println("\n\n***** Pizzeria Administration *****");
 
@@ -29,6 +39,9 @@ public class Menu {
 
 	}
 
+	/**
+	 * 
+	 */
 	public void lancer() {
 		int choix;
 

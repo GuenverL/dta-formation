@@ -1,7 +1,6 @@
 package dta.pizzeria.dao;
 
 import java.util.List;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import javax.persistence.*;
@@ -18,7 +17,10 @@ public class PizzaDaoJpa implements IDao<Pizza> {
 
 	@Override
 	public List<Pizza> findAll() {
-		return emf.createEntityManager().createNamedQuery("pizza.findAll", Pizza.class).getResultList();
+		EntityManager em = emf.createEntityManager();
+		List<Pizza> pizzas = em.createNamedQuery("pizza.findAll", Pizza.class).getResultList();
+		em.close();
+		return pizzas;
 	}
 
 	public void emGestion(Consumer<EntityManager> cem) {
@@ -38,8 +40,7 @@ public class PizzaDaoJpa implements IDao<Pizza> {
 	@Override
 	public void update(String codePizza, Pizza pizza) {
 		emGestion(em -> {
-			Pizza oldPizza = em.createNamedQuery("pizza.findPizzaByCode", Pizza.class).setParameter("code", codePizza)
-					.getSingleResult();
+			Pizza oldPizza = em.createNamedQuery("pizza.findPizzaByCode", Pizza.class).setParameter("code", codePizza).getSingleResult();
 			if (oldPizza != null) {
 				pizza.setId(oldPizza.getId());
 				em.merge(pizza);

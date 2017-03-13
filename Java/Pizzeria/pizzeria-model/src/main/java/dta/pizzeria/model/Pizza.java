@@ -10,8 +10,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import dta.pizzeria.exception.StockageException;
 
 @Entity
-@NamedQueries({ @NamedQuery(name = "pizza.findAll", query = "SELECT p FROM Pizza"),
-		@NamedQuery(name = "pizza.findByCode", query = "SELECT p FROM Pizza WHERE p.code = :code") })
+@NamedQueries({ @NamedQuery(name = "pizza.findAll", query = "SELECT P FROM Pizza P"), @NamedQuery(name = "pizza.findByCode", query = "SELECT P FROM Pizza P WHERE P.code = :code") })
 public class Pizza implements Comparable<Pizza> {
 
 	@Id
@@ -28,6 +27,7 @@ public class Pizza implements Comparable<Pizza> {
 	private CategoriePizza categorie;
 
 	public Pizza() {
+		//
 	}
 
 	public Pizza(String code, String nom, double prix, CategoriePizza categorie) {

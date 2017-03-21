@@ -16,19 +16,19 @@ public class Pizza implements Comparable<Pizza> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@ToString
 	@Column(name = "code", length = 5, nullable = false, unique = true)
 	private String code;
+	@ToString
 	@Column(name = "nom", length = 50, nullable = false)
 	private String nom;
+	@ToString
 	@Column(name = "prix", nullable = false)
 	private double prix;
+	@ToString
 	@Enumerated(EnumType.STRING)
 	@Column(name = "categorie", nullable = false)
 	private CategoriePizza categorie;
-
-	public Pizza() {
-		//
-	}
 
 	public Pizza(String code, String nom, double prix, CategoriePizza categorie) {
 		this.code = code.toUpperCase();
@@ -38,19 +38,21 @@ public class Pizza implements Comparable<Pizza> {
 	}
 
 	public String getCode() {
-		return code;
+		return this.code;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		for (Field field : this.getClass().getDeclaredFields()) {
+			if (field.isAnnotationPresent(ToString.class)) {
 				try {
 					sb.append(field.get(this).toString());
 					sb.append(" ");
 				} catch (IllegalArgumentException | IllegalAccessException e) {
 					throw new StockageException("ToString error", e);
 				}
+			}
 		}
 		return sb.toString();
 
@@ -62,11 +64,11 @@ public class Pizza implements Comparable<Pizza> {
 	}
 
 	public CategoriePizza getCategorie() {
-		return categorie;
+		return this.categorie;
 	}
 
 	public double getPrix() {
-		return prix;
+		return this.prix;
 	}
 
 	@Override
@@ -77,37 +79,37 @@ public class Pizza implements Comparable<Pizza> {
 		if (obj == this) {
 			return true;
 		}
-		if (obj.getClass() != getClass()) {
+		if (obj.getClass() != this.getClass()) {
 			return false;
 		}
 		Pizza rhs = (Pizza) obj;
 		return new EqualsBuilder().
-				append(code, rhs.code).
-				append(nom, rhs.nom).
-				append(prix, rhs.prix).
-				append(categorie, categorie).
-				isEquals();
+						append(this.code, rhs.code).
+						append(this.nom, rhs.nom).
+						append(this.prix, rhs.prix).
+						append(this.categorie, this.categorie).
+						isEquals();
 	}
-	
+
 	@Override
 	public int hashCode() {
-	     return new HashCodeBuilder(17, 37).
-	       append(this.code).
-	       append(this.nom).
-	       append(this.prix).
-	       append(this.categorie).
-	       toHashCode();
+		return new HashCodeBuilder(17, 37).
+						append(this.code).
+						append(this.nom).
+						append(this.prix).
+						append(this.categorie).
+						toHashCode();
 	}
 
 	public String getNom() {
-		return nom;
+		return this.nom;
 	}
 
 	/**
 	 * @return the id
 	 */
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
 
 	/**

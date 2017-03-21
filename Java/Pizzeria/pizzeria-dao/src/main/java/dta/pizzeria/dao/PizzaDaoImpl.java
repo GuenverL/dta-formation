@@ -15,28 +15,28 @@ public class PizzaDaoImpl implements IDao<Pizza> {
 	private List<Pizza> pizzas = new ArrayList<>();
 
 	public PizzaDaoImpl() {
-		pizzas.add(new Pizza("PEP", "Peperoni", 12.50, CategoriePizza.VIANDE));
-		pizzas.add(new Pizza("MAR", "Margherita", 14.00, CategoriePizza.VIANDE));
-		pizzas.add(new Pizza("REI", "La Reine", 11.50, CategoriePizza.VIANDE));
-		pizzas.add(new Pizza("FRO", "Les 4 fromages", 12.00, CategoriePizza.SANS_VIANDE));
-		pizzas.add(new Pizza("CAN", "La Cannibale", 12.50, CategoriePizza.VIANDE));
-		pizzas.add(new Pizza("SAV", "La savoyarde", 13.00, CategoriePizza.VIANDE));
-		pizzas.add(new Pizza("ORI", "L'orientale", 13.50, CategoriePizza.VIANDE));
-		pizzas.add(new Pizza("IND", "L'indienne", 14.00, CategoriePizza.VIANDE));
-		Collections.sort(pizzas);
+		this.pizzas.add(new Pizza("PEP", "Peperoni", 12.50, CategoriePizza.VIANDE));
+		this.pizzas.add(new Pizza("MAR", "Margherita", 14.00, CategoriePizza.VIANDE));
+		this.pizzas.add(new Pizza("REI", "La Reine", 11.50, CategoriePizza.VIANDE));
+		this.pizzas.add(new Pizza("FRO", "Les 4 fromages", 12.00, CategoriePizza.SANS_VIANDE));
+		this.pizzas.add(new Pizza("CAN", "La Cannibale", 12.50, CategoriePizza.VIANDE));
+		this.pizzas.add(new Pizza("SAV", "La savoyarde", 13.00, CategoriePizza.VIANDE));
+		this.pizzas.add(new Pizza("ORI", "L'orientale", 13.50, CategoriePizza.VIANDE));
+		this.pizzas.add(new Pizza("IND", "L'indienne", 14.00, CategoriePizza.VIANDE));
+		Collections.sort(this.pizzas);
 	}
 
 
 	@Override
 	public List<Pizza> findAll() {
-		return pizzas;
+		return this.pizzas;
 	}
 
 	public int find(String code) {
 		int index = -1;
-		for (Pizza pizza : pizzas) {
+		for (Pizza pizza : this.pizzas) {
 			if (pizza.getCode().equalsIgnoreCase(code)) {
-				index = pizzas.indexOf(pizza);
+				index = this.pizzas.indexOf(pizza);
 			}
 		}
 		return index;
@@ -44,17 +44,17 @@ public class PizzaDaoImpl implements IDao<Pizza> {
 
 	@Override
 	public void saveNew(Pizza pizza) {
-		if (!pizzas.add(pizza))
+		if (!this.pizzas.add(pizza))
 			throw new SavePizzaException("Save error", null);
-		Collections.sort(pizzas);
+		Collections.sort(this.pizzas);
 	}
 
 	@Override
 	public void update(String codePizza, Pizza newPizza) {
-		int index = find(codePizza);
+		int index = this.find(codePizza);
 		if (index > -1) {
-			pizzas.set(index, newPizza);
-			Collections.sort(pizzas);
+			this.pizzas.set(index, newPizza);
+			Collections.sort(this.pizzas);
 		} else {
 			throw new UpdatePizzaException(codePizza, null);
 		}
@@ -62,9 +62,9 @@ public class PizzaDaoImpl implements IDao<Pizza> {
 
 	@Override
 	public void delete(String codePizza) {
-		int index = find(codePizza);
+		int index = this.find(codePizza);
 		if (index > -1) {
-			pizzas.remove(index);
+			this.pizzas.remove(index);
 		} else {
 			throw new DeletePizzaException(codePizza, null);
 		}

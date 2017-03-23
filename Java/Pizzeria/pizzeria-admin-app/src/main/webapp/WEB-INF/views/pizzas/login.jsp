@@ -21,7 +21,7 @@
 				</div>
 				<div class="form-group">
 					<label>Mot de passe</label> 
-					<input type="password" class="form-control" name="UserPass" required>
+					<input type="password" class="form-control" name="userPass" required>
 				</div>
 								
 				<div class="form-group">

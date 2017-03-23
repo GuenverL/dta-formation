@@ -1,3 +1,4 @@
+package controller;
 import java.io.IOException;
 
 import javax.servlet.*;
@@ -18,7 +19,7 @@ public class LoginController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getSession().setAttribute("mail", req.getParameter("userMail"));
-		req.getSession().setAttribute("password", req.getParameter("userpass"));
+		req.getSession().setAttribute("password", req.getParameter("userPass"));
 		resp.sendRedirect(req.getContextPath() + "/pizzas/list");
 	}
 

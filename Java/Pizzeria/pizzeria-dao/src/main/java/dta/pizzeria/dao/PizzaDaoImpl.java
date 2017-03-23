@@ -32,7 +32,7 @@ public class PizzaDaoImpl implements IDao<Pizza> {
 		return this.pizzas;
 	}
 
-	public int find(String code) {
+	private int find(String code) {
 		int index = -1;
 		for (Pizza pizza : this.pizzas) {
 			if (pizza.getCode().equalsIgnoreCase(code)) {
@@ -40,6 +40,15 @@ public class PizzaDaoImpl implements IDao<Pizza> {
 			}
 		}
 		return index;
+	}
+
+	public Pizza findPizza(String code) {
+		for (Pizza pizza : this.pizzas) {
+			if (pizza.getCode().equalsIgnoreCase(code)) {
+				return pizza;
+			}
+		}
+		return null;
 	}
 
 	@Override

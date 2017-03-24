@@ -2,10 +2,9 @@
 
 import java.io.IOException;
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.*;
 
-@WebFilter(urlPatterns = { "/pizzas/*", "/technique" })
+//@WebFilter(urlPatterns = { "/pizzas/*", "/technique" })
 public class LoginFilter implements Filter {
 
 	private FilterConfig config = null;

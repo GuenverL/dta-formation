@@ -24,6 +24,5 @@ public class PizzaListener {
 
 	public void suppressionPizza(@Observes SuppressionPizzaEvent e) {
 		this.ts.delete(e.getPizza(), e.getTime());
-
 	}
 }

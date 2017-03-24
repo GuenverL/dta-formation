@@ -20,8 +20,6 @@ public class AjouterPizzaController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Pizza pizza = this.ps.findPizza(req.getParameter("code"));
-		req.setAttribute("pizza", pizza);
 		RequestDispatcher disp = this.getServletContext().getRequestDispatcher(NEW_PIZZA_VIEW);
 		disp.forward(req, resp);
 

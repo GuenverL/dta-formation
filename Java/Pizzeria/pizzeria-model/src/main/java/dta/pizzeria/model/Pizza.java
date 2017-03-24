@@ -30,6 +30,9 @@ public class Pizza implements Comparable<Pizza> {
 	@Column(name = "categorie", nullable = false)
 	private CategoriePizza categorie;
 
+	public Pizza() {
+	}
+
 	public Pizza(String code, String nom, double prix, CategoriePizza categorie) {
 		this.code = code.toUpperCase();
 		this.nom = nom;
@@ -105,49 +108,26 @@ public class Pizza implements Comparable<Pizza> {
 		return this.nom;
 	}
 
-	/**
-	 * @return the id
-	 */
 	public Integer getId() {
 		return this.id;
 	}
 
-	/**
-	 * @param id
-	 *            the id to set
-	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	/**
-	 * @param code
-	 *            the code to set
-	 */
 	public void setCode(String code) {
 		this.code = code;
 	}
 
-	/**
-	 * @param nom
-	 *            the nom to set
-	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
-	/**
-	 * @param prix
-	 *            the prix to set
-	 */
 	public void setPrix(double prix) {
 		this.prix = prix;
 	}
 
-	/**
-	 * @param categorie
-	 *            the categorie to set
-	 */
 	public void setCategorie(CategoriePizza categorie) {
 		this.categorie = categorie;
 	}

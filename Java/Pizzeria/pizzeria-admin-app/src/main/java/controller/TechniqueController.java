@@ -20,7 +20,7 @@ public class TechniqueController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher disp = this.getServletContext().getRequestDispatcher(TECH_VIEW);
-		req.setAttribute("pizzas", this.ts.getPizzas());
+		req.setAttribute("events", this.ts.getEvents());
 		disp.forward(req, resp);
 	}
 }

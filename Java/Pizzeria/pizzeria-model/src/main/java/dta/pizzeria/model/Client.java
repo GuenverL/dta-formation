@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
+@NamedQueries({ @NamedQuery(name = "client.findAll", query = "SELECT P FROM Client P"), @NamedQuery(name = "client.findByCode", query = "SELECT P FROM Client P WHERE P.nom = :nom") })
 public class Client {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

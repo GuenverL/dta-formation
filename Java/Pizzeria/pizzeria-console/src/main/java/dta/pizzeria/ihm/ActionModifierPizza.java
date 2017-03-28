@@ -1,9 +1,12 @@
 package dta.pizzeria.ihm;
 
+import org.springframework.stereotype.Controller;
+
 import dta.pizzeria.exception.StockageException;
 import dta.pizzeria.model.CategoriePizza;
 import dta.pizzeria.model.Pizza;
 
+@Controller
 public class ActionModifierPizza extends Action {
 
 	public ActionModifierPizza() {

@@ -2,18 +2,24 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
 		
 	<import resource="dao-memoire-config.xml"/>	
 		
 	<bean id="menuPrincipal" class="dta.pizzeria.ihm.Menu">
-		<property name="sc" ref="scanner"></property>
+		<constructor-arg ref="scanner"></constructor-arg>
 		<property name="actions">
 			<util:map>
 				<entry key="1" value-ref="list"></entry>
-				<entry key="2" value-ref="add"></entry>
-				<entry key="3" value-ref="del"></entry>
+				<entry key="2" value-ref="group"></entry>
+				<entry key="3" value-ref="price"></entry>
+				<entry key="4" value-ref="add"></entry>
+				<entry key="5" value-ref="update"></entry>
+				<entry key="6" value-ref="import"></entry>
+				<entry key="7" value-ref="del"></entry>
 				<entry key="99" value-ref="quit"></entry>
 			</util:map>
 		</property>
@@ -25,8 +31,8 @@
 		</constructor-arg>
 	</bean>	
 	
-	<bean id="action" class="dta.pizzeria.ihm.Action" abstract="true">
-		<property name="dao" ref="pizzaDao"></property>
+	<bean id="action" abstract="true">
+		<property name="dao" ref="pizzaDaoJpa"></property>
 	</bean>	
 	
 	

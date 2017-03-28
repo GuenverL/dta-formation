@@ -1,5 +1,8 @@
 package dta.pizzeria.ihm;
 
+import org.springframework.stereotype.Controller;
+
+@Controller
 public class ActionImporterPizza extends Action {
 
 

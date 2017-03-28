@@ -27,7 +27,7 @@ public class PizzaDaoJDBC implements IDao<Pizza> {
 	@Override
 	public List<Pizza> findAll() {
 		List<Pizza> res = new ArrayList<>();
-		try (Connection connection = createNewConnection();
+		try (Connection connection = this.createNewConnection();
 				Statement statement = connection.createStatement();
 				ResultSet reqRes = statement.executeQuery("SELECT * FROM pizza");) {
 
@@ -45,7 +45,7 @@ public class PizzaDaoJDBC implements IDao<Pizza> {
 
 	@Override
 	public void saveNew(Pizza pizza) {
-		try (Connection connection = createNewConnection();
+		try (Connection connection = this.createNewConnection();
 				PreparedStatement reqRes = connection
 						.prepareStatement("INSERT INTO pizza (code,nom,prix,categorie) VALUES(?,?,?,?)");) {
 
@@ -62,7 +62,7 @@ public class PizzaDaoJDBC implements IDao<Pizza> {
 
 	@Override
 	public void update(String codePizza, Pizza pizza) {
-		try (Connection connection = createNewConnection();
+		try (Connection connection = this.createNewConnection();
 				PreparedStatement reqRes = connection.prepareStatement(
 						"UPDATE pizza SET code = ?, nom =?, prix = ?, categorie = ? WHERE code = ? ");) {
 			reqRes.setString(1, pizza.getCode());
@@ -81,7 +81,7 @@ public class PizzaDaoJDBC implements IDao<Pizza> {
 
 	@Override
 	public void delete(String codePizza) {
-		try (Connection connection = createNewConnection();
+		try (Connection connection = this.createNewConnection();
 				PreparedStatement reqRes = connection.prepareStatement("DELETE FROM pizza WHERE code = ?");) {
 
 			reqRes.setString(1, codePizza);
@@ -94,18 +94,19 @@ public class PizzaDaoJDBC implements IDao<Pizza> {
 		}
 	}
 
+	@Override
 	public void importPizzas() {
 		List<Pizza> pizzas = new ArrayList<>();
 
 		try {
-			Files.list(Paths.get("data")).forEach(path -> pizzas.add(traitement(path)));
+			Files.list(Paths.get("data")).forEach(path -> pizzas.add(this.traitement(path)));
 		} catch (IOException e) {
 			throw new StockageException("Search error", e);
 		}
 
 		List<List<Pizza>> parts = ListUtils.partition(pizzas, 3);
 
-		try (Connection connection = createNewConnection();
+		try (Connection connection = this.createNewConnection();
 				PreparedStatement reqRes = connection
 						.prepareStatement("INSERT INTO pizza (code,nom,prix,categorie) VALUES(?,?,?,?)");) {
 			connection.setAutoCommit(false);
@@ -115,8 +116,6 @@ public class PizzaDaoJDBC implements IDao<Pizza> {
 					reqRes.setString(2, pizza.getNom());
 					reqRes.setDouble(3, pizza.getPrix());
 					reqRes.setString(4, pizza.getCategorie().toString());
-					if (reqRes.executeUpdate() == 0)
-						connection.rollback();
 				}
 				connection.commit();
 			}

@@ -5,23 +5,22 @@ import dta.pizzeria.model.Pizza;
 
 public class ActionSupprimerPizza extends Action {
 
-	public ActionSupprimerPizza(IhmTools ihmTools) {
-		super(ihmTools);
+	public ActionSupprimerPizza() {
 		this.nom = "Supprimer une pizza";
 	}
 
 	@Override
 	public void faire() {
-		for (Pizza pizza : ihmTools.getDao().findAll()) {
+		for (Pizza pizza : this.dao.findAll()) {
 			System.out.println(pizza.toString());
 		}
 		System.out.println("Veuillez choisir la pizza a supprimer (entrez le code) :\n(99 pour abandonner).");
 
-		String code = ihmTools.getSc().nextLine();
+		String code = this.sc.nextLine();
 
 		if (!("99".equals(code))) {
 			try {
-				ihmTools.getDao().delete(code);
+				this.dao.delete(code);
 			} catch (StockageException e) {
 				throw new StockageException(e.getMessage(), e);
 			}

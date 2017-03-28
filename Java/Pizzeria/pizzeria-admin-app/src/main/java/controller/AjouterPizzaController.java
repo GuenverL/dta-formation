@@ -27,8 +27,7 @@ public class AjouterPizzaController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		this.ps.saveNew(new Pizza(req.getParameter("pizzaCode"), req.getParameter("pizzaName"), Double.valueOf(req.getParameter("pizzaPrice")), CategoriePizza.valueOf((req.getParameter("pizzaCat")
-						.toUpperCase()))));
+		this.ps.saveNew(new Pizza(req.getParameter("pizzaCode"), req.getParameter("pizzaName"), Double.valueOf(req.getParameter("pizzaPrice")), CategoriePizza.valueOf(req.getParameter("pizzaCat").toUpperCase())));
 		resp.sendRedirect(req.getContextPath() + "/pizzas/list");
 	}
 

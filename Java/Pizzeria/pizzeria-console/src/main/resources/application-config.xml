@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+		
+	<import resource="dao-memoire-config.xml"/>	
+		
+	<bean id="menuPrincipal" class="dta.pizzeria.ihm.Menu">
+		<property name="sc" ref="scanner"></property>
+		<property name="actions">
+			<util:map>
+				<entry key="1" value-ref="list"></entry>
+				<entry key="2" value-ref="add"></entry>
+				<entry key="3" value-ref="del"></entry>
+				<entry key="99" value-ref="quit"></entry>
+			</util:map>
+		</property>
+	</bean>
+	
+	<bean id="scanner" class="java.util.Scanner">
+		<constructor-arg>
+			<util:constant static-field="java.lang.System.in"/>
+		</constructor-arg>
+	</bean>	
+	
+	<bean id="action" class="dta.pizzeria.ihm.Action" abstract="true">
+		<property name="dao" ref="pizzaDao"></property>
+	</bean>	
+	
+	
+	<bean id="list" class="dta.pizzeria.ihm.ActionAfficherListe" parent="action"></bean>	
+	<bean id="group" class="dta.pizzeria.ihm.ActionAfficherListeGroupee" parent="action"></bean>	
+	<bean id="price" class="dta.pizzeria.ihm.ActionAfficherPlusChere" parent="action"></bean>	
+	<bean id="add" class="dta.pizzeria.ihm.ActionAjouterPizza" parent="action">
+		<property name="sc" ref="scanner"></property>	
+	</bean>	
+	<bean id="import" class="dta.pizzeria.ihm.ActionImporterPizza" parent="action"></bean>	
+	<bean id="update" class="dta.pizzeria.ihm.ActionModifierPizza" parent="action">
+		<property name="sc" ref="scanner"></property>
+	</bean>	
+	<bean id="quit" class="dta.pizzeria.ihm.ActionQuitter" parent="action"></bean>	
+	<bean id="del" class="dta.pizzeria.ihm.ActionSupprimerPizza" parent="action">
+		<property name="sc" ref="scanner"></property>
+	</bean>	
+</beans>

@@ -5,8 +5,7 @@ import dta.pizzeria.model.CategoriePizza;
 import dta.pizzeria.model.Pizza;
 public class ActionAjouterPizza extends Action {
 
-	public ActionAjouterPizza(IhmTools ihmTools) {
-		super(ihmTools);
+	public ActionAjouterPizza() {
 		this.nom = "Ajouter une nouvelle pizza";
 	}
 
@@ -19,21 +18,21 @@ public class ActionAjouterPizza extends Action {
 		CategoriePizza[] cats = CategoriePizza.values();
 
 		System.out.println("Veuiller saisir le code");
-		code = ihmTools.getSc().nextLine().toUpperCase();
+		code = this.sc.nextLine().toUpperCase();
 		System.out.println("Veuiller saisir le nom (sans espace)");
-		nom = ihmTools.getSc().nextLine();
+		nom = this.sc.nextLine();
 		System.out.println("Veuiller saisir le prix");
-		prix = ihmTools.getSc().nextDouble();
+		prix = this.sc.nextDouble();
 
 		System.out.println("Veuiller saisir un numero de categorie : ");
 		for (CategoriePizza cat : cats) {
 			System.out.print(cat.ordinal() + " : ");
 			System.out.println(cat.toString());
 		}
-		choixcat = ihmTools.getSc().nextInt();
+		choixcat = this.sc.nextInt();
 
 		try {
-			ihmTools.getDao().saveNew(new Pizza(code, nom, prix, cats[choixcat]));
+			this.dao.saveNew(new Pizza(code, nom, prix, cats[choixcat]));
 		} catch (StockageException e) {
 			throw new StockageException(e.getMessage(), e);
 		}

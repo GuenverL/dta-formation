@@ -2,8 +2,7 @@ package dta.pizzeria.ihm;
 
 @OptionMenu
 public class ActionQuitter extends Action {
-	public ActionQuitter(IhmTools ihmTools) {
-		super(ihmTools);
+	public ActionQuitter() {
 		this.nom = "Sortir";
 	}
 

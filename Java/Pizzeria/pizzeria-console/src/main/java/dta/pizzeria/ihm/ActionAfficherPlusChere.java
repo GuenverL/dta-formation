@@ -5,15 +5,14 @@ import java.util.Comparator;
 import dta.pizzeria.model.Pizza;
 
 public class ActionAfficherPlusChere extends Action {
-	public ActionAfficherPlusChere(IhmTools ihmTools) {
-		super(ihmTools);
+	public ActionAfficherPlusChere() {
 		this.nom = "Afficher la pizza la plus chere";
 	}
 
 	@Override
 	public void faire() {
 
-		ihmTools.getDao().findAll().stream().max(Comparator.comparing(Pizza::getPrix))
-				.ifPresent(System.out::println);
+		this.dao.findAll().stream().max(Comparator.comparing(Pizza::getPrix))
+		.ifPresent(System.out::println);
 	}
 }

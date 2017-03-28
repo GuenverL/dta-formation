@@ -30,9 +30,6 @@ public class Pizza implements Comparable<Pizza> {
 	@Column(name = "categorie", nullable = false)
 	private CategoriePizza categorie;
 
-	public Pizza() {
-	}
-
 	public Pizza(String code, String nom, double prix, CategoriePizza categorie) {
 		this.code = code.toUpperCase();
 		this.nom = nom;

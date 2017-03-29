@@ -47,7 +47,7 @@ public class ActionModifierPizza extends Action {
 			choixcat = this.sc.nextInt();
 
 			try {
-				this.dao.saveNew(new Pizza(code, nom, prix, cats[choixcat]));
+				this.dao.update(oldCode, new Pizza(code, nom, prix, cats[choixcat]));
 			} catch (StockageException e) {
 				throw new StockageException(e.getMessage(), e);
 			}

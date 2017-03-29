@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import dta.pizzeria.exception.DeletePizzaException;
 import dta.pizzeria.exception.SavePizzaException;
 import dta.pizzeria.exception.UpdatePizzaException;
 import dta.pizzeria.model.CategoriePizza;
 import dta.pizzeria.model.Pizza;
 
+@Repository
 public class PizzaDaoImpl implements IDao<Pizza> {
 
 	private List<Pizza> pizzas = new ArrayList<>();

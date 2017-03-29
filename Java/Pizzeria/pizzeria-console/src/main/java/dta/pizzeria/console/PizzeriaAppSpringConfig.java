@@ -4,13 +4,21 @@ import java.util.Scanner;
 import java.util.logging.Level;
 
 import org.springframework.context.annotation.*;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.jdbc.datasource.embedded.*;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 import dta.pizzeria.dao.*;
 import dta.pizzeria.ihm.Menu;
 import dta.pizzeria.model.Pizza;
 
 @Configuration
-@ComponentScan("dta.pizzeria.ihm")
+@ComponentScan
+@EnableTransactionManagement
 public class PizzeriaAppSpringConfig {
+
 
 	@Bean
 	public Scanner sc() {
@@ -18,8 +26,21 @@ public class PizzeriaAppSpringConfig {
 	}
 
 	@Bean
+	public EmbeddedDatabase getData() {
+		/*
+		 * private DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		 * this.dataSource.setUrl("jdbc:mysql://localhost:3306/pizzadb?useSSL=false");
+		 * this.dataSource.setUsername("root");
+		 * this.dataSource.setPassword("");
+		 * dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
+		 *
+		 */
+		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).addScript("schema.sql").build();
+	}
+
+	@Bean
 	public IDao<Pizza> pizzaDao() {
-		return new PizzaDaoImpl();
+		return new PizzaDaoSpringJpa();
 	}
 
 
@@ -31,4 +52,14 @@ public class PizzeriaAppSpringConfig {
 		}
 	}
 
+	@Bean
+	public PlatformTransactionManager txManager() {
+		return new DataSourceTransactionManager(this.getData());
+	}
+
+	@Bean
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+		return new LocalContainerEntityManagerFactoryBean();
+	}
 }
+

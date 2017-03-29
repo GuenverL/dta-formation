@@ -14,15 +14,13 @@ public class Menu {
 	private Scanner sc;
 	private Map<Integer, Action> actions = new TreeMap<>();
 
-	@Autowired
-	private ApplicationContext cont;
+	@Autowired private ApplicationContext cont;
 
 	@Autowired
 	public Menu(Scanner sc) {
 		super();
 		this.sc = sc;
 	}
-
 
 	public void setActions(Map<Integer, Action> actions) {
 		this.actions = actions;
@@ -57,6 +55,9 @@ public class Menu {
 	public void init() {
 		this.actions = new HashMap<>();
 		this.actions.put(1, this.cont.getBean(ActionAfficherListe.class));
+		this.actions.put(2, this.cont.getBean(ActionAjouterPizza.class));
+		this.actions.put(3, this.cont.getBean(ActionModifierPizza.class));
+		this.actions.put(4, this.cont.getBean(ActionSupprimerPizza.class));
 		this.actions.put(99, this.cont.getBean(ActionQuitter.class));
 	}
 }

@@ -22,17 +22,21 @@ public class PizzaDaoTest {
 
 	@Test
 	public void testFindAll() {
-		this.dao.saveNew(new Pizza("A", "a", 1, CategoriePizza.SANS_VIANDE));
-		this.dao.saveNew(new Pizza("B", "b", 2, CategoriePizza.VIANDE));
-		this.dao.saveNew(new Pizza("C", "c", 3, CategoriePizza.POISSON));
+		this.dao.saveNew(new Pizza("", "ab", 1, CategoriePizza.SANS_VIANDE));
+		this.dao.saveNew(new Pizza("", "bcag", 2, CategoriePizza.VIANDE));
+		this.dao.saveNew(new Pizza("", "cabdfhdg", 3, CategoriePizza.POISSON));
+
 
 		List<Pizza> ps = this.dao.findAll();
-		assertTrue(ps.stream().anyMatch(p -> "A".equals(p.getCode())));
-		assertTrue(ps.stream().anyMatch(p -> "b".equals(p.getNom())));
-		assertTrue(ps.stream().anyMatch(p -> "C".equals(p.getCode())));
-		this.dao.delete("A");
-		this.dao.delete("B");
-		this.dao.delete("C");
+		assertTrue(ps.stream().anyMatch(p -> "AB".equals(p.getCode())));
+		assertTrue(ps.stream().anyMatch(p -> "BCAG".equals(p.getCode())));
+		assertTrue(ps.stream().anyMatch(p -> "CABD".equals(p.getCode())));
+
+		// this.dao.delete("A");
+		// this.dao.delete("B");
+		// this.dao.delete("C");
+
+		System.out.println(this.dao.findAll());
 	}
 
 }

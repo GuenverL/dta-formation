@@ -8,11 +8,11 @@ public interface IDao<T> {
 
 	List<T> findAll();
 
-	void saveNew(T pizza);
+	void saveNew(T o);
 
-	void update(String codePizza, T pizza);
+	void update(String s, T o);
 
-	void delete(String codePizza);
+	void delete(String s);
 
 	default void importPizzas() {
 		throw new StockageException("Veuillez changez de configuration");

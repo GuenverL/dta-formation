@@ -3,20 +3,25 @@ package dta.pizzeria.console;
 import java.util.Scanner;
 import java.util.logging.Level;
 
-import org.springframework.context.annotation.*;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.jdbc.datasource.embedded.*;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
+import javax.persistence.EntityManagerFactory;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.*;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
 import dta.pizzeria.dao.*;
 import dta.pizzeria.ihm.Menu;
 import dta.pizzeria.model.Pizza;
 
 @Configuration
-@ComponentScan
-@EnableTransactionManagement
+@ComponentScan("dta.pizzeria")
+@EnableJpaRepositories("dta.pizzeria")
 public class PizzeriaAppSpringConfig {
 
 
@@ -27,20 +32,23 @@ public class PizzeriaAppSpringConfig {
 
 	@Bean
 	public EmbeddedDatabase getData() {
+
 		/*
-		 * private DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		 * this.dataSource.setUrl("jdbc:mysql://localhost:3306/pizzadb?useSSL=false");
-		 * this.dataSource.setUsername("root");
-		 * this.dataSource.setPassword("");
+		 * DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		 * dataSource.setUrl("jdbc:mysql://localhost:3306/pizzadb?useSSL=false");
+		 * dataSource.setUsername("root");
+		 * dataSource.setPassword("");
 		 * dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
-		 *
+		 * return dataSource;
 		 */
+
 		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).addScript("schema.sql").build();
 	}
 
 	@Bean
+	@Qualifier("pizzaDao1")
 	public IDao<Pizza> pizzaDao() {
-		return new PizzaDaoSpringJpa();
+		return new PizzaDaoSpringDataJpa();
 	}
 
 
@@ -53,13 +61,22 @@ public class PizzeriaAppSpringConfig {
 	}
 
 	@Bean
-	public PlatformTransactionManager txManager() {
-		return new DataSourceTransactionManager(this.getData());
+	public PlatformTransactionManager transactionManager() {
+		JpaTransactionManager txManager = new JpaTransactionManager();
+		txManager.setEntityManagerFactory(this.entityManagerFactory());
+		return txManager;
 	}
 
 	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-		return new LocalContainerEntityManagerFactoryBean();
+	public EntityManagerFactory entityManagerFactory() {
+		HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
+		va.setGenerateDdl(true);
+		LocalContainerEntityManagerFactoryBean f = new LocalContainerEntityManagerFactoryBean();
+		f.setJpaVendorAdapter(va);
+		f.setPackagesToScan("dta.pizzeria");
+		f.setDataSource(this.getData());
+		f.afterPropertiesSet();
+		return f.getObject();
 	}
 }
 

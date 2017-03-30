@@ -6,11 +6,9 @@ import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Repository;
-
 import dta.pizzeria.model.*;
 
-@Repository
+
 public class PizzaDaoSpringJdbc implements IDao<Pizza> {
 
 	private JdbcTemplate temp;

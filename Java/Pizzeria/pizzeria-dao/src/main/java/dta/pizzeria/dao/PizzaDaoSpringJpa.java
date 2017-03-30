@@ -4,12 +4,11 @@ import java.util.*;
 
 import javax.persistence.*;
 
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import dta.pizzeria.model.*;
 
-@Repository
+
 public class PizzaDaoSpringJpa implements IDao<Pizza> {
 
 	private static final String PIZZA_FIND_BY_CODE = "pizza.findByCode";

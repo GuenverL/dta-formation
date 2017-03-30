@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import javax.persistence.*;
 
-@Entity
+
 public class Commande {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

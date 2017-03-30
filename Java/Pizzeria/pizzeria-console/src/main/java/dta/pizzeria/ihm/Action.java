@@ -3,6 +3,7 @@ package dta.pizzeria.ihm;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
@@ -25,6 +26,7 @@ public abstract class Action {
 	}
 
 	@Autowired
+	@Qualifier("pizzaDao1")
 	public void setDao(IDao<Pizza> dao) {
 		this.dao = dao;
 	}

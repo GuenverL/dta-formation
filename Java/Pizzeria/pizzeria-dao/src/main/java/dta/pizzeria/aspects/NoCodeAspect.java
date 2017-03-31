@@ -1,20 +1,15 @@
 package dta.pizzeria.aspects;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
+import java.time.*;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import dta.pizzeria.dao.PerformanceRepository;
-import dta.pizzeria.model.Performance;
-import dta.pizzeria.model.Pizza;
+import dta.pizzeria.model.*;
 
 @Aspect
 @Component
@@ -37,12 +32,15 @@ public class NoCodeAspect {
 	private void onAction() {
 	}
 
-	@Around("dta.pizzeria.aspects.NoCodeAspect.onAction()")
-	private void savePerformance(ProceedingJoinPoint pjp) throws Throwable {
+	@Around("dta.pizzeria.aspects.NoCodeAspect.onSave()")
+	private Object savePerformance(ProceedingJoinPoint pjp) throws Throwable {
 		Performance p = new Performance();
+		System.out.println(LocalDateTime.now());
+		p.setService(pjp.getSignature().getName());
 		p.setDate(LocalDateTime.now());
-		pjp.proceed();
+		Object proceed = pjp.proceed();
 		p.setTemps(Duration.between(p.getDate(), LocalDateTime.now()));
-		this.repo.savePerf(p);
+		this.repo.save(p);
+		return proceed;
 	}
 }

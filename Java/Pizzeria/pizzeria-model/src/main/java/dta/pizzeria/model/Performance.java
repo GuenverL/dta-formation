@@ -14,11 +14,11 @@ public class Performance implements Comparable<Performance> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@ToString
-	@Column(name = "service", length = 50, nullable = false) private String service;
+	@Column(name = "service", length = 50) private String service;
 	@ToString
-	@Column(name = "date", nullable = false) private LocalDateTime date;
+	@Column(name = "date") private LocalDateTime date;
 	@ToString
-	@Column(name = "temps", nullable = false) private Duration temps;
+	@Column(name = "temps") private Duration temps;
 
 	public Performance() {
 	}

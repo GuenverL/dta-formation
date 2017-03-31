@@ -1,26 +1,28 @@
 package dta.pizzeria.console;
 
 import java.util.Scanner;
-import java.util.logging.Level;
-
 import javax.persistence.EntityManagerFactory;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
 import dta.pizzeria.dao.*;
-import dta.pizzeria.ihm.Menu;
 import dta.pizzeria.model.Pizza;
 
 @Configuration
 @ComponentScan("dta.pizzeria")
 @EnableJpaRepositories("dta.pizzeria")
 @EnableAspectJAutoProxy
+@EnableWebMvc
 public class PizzeriaAppSpringConfig {
 
 
@@ -30,31 +32,22 @@ public class PizzeriaAppSpringConfig {
 	}
 
 	@Bean
-	public DriverManagerDataSource getData() {
+	public EmbeddedDatabase getData() {
 
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setUrl("jdbc:h2:mem:test");
-		dataSource.setUsername("root");
-		dataSource.setPassword("");
-		dataSource.setDriverClassName("org.h2.Driver");
-		return dataSource;
+		// DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		// dataSource.setUrl("jdbc:h2:mem:test");
+		// dataSource.setUsername("root");
+		// dataSource.setPassword("");
+		// dataSource.setDriverClassName("org.h2.Driver");
+		// return dataSource;
 
-		// return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).addScript("schema.sql").build();
+		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).addScript("schema.sql").build();
 	}
 
 	@Bean
 	@Qualifier("pizzaDao1")
 	public IDao<Pizza> pizzaDao() {
 		return new PizzaDaoSpringDataJpa();
-	}
-
-
-	public static void main(String[] args) {
-		java.util.logging.Logger.getLogger("org").setLevel(Level.SEVERE);
-		try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(PizzeriaAppSpringConfig.class)) {
-			Menu menu = context.getBean(Menu.class);
-			menu.lancer();
-		}
 	}
 
 	@Bean

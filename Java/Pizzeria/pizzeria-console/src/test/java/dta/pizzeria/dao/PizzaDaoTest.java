@@ -1,7 +1,5 @@
 package dta.pizzeria.dao;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
 
 import dta.pizzeria.console.PizzeriaAppSpringConfig;
@@ -19,6 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class PizzaDaoTest {
 
 	@Autowired @Qualifier("pizzaDao1") private IDao<Pizza> dao;
+	@Autowired private PerformanceRepository repop;
 
 	@Test
 	public void testFindAll() {
@@ -28,15 +27,16 @@ public class PizzaDaoTest {
 
 
 		List<Pizza> ps = this.dao.findAll();
-		assertTrue(ps.stream().anyMatch(p -> "AB".equals(p.getCode())));
-		assertTrue(ps.stream().anyMatch(p -> "BCAG".equals(p.getCode())));
-		assertTrue(ps.stream().anyMatch(p -> "CABD".equals(p.getCode())));
+		// assertTrue(ps.stream().anyMatch(p -> "AB".equals(p.getCode())));
+		// assertTrue(ps.stream().anyMatch(p -> "BCAG".equals(p.getCode())));
+		// assertTrue(ps.stream().anyMatch(p -> "CABD".equals(p.getCode())));
 
-		// this.dao.delete("A");
-		// this.dao.delete("B");
-		// this.dao.delete("C");
-
+		this.dao.delete("AB");
+		this.dao.delete("BCAG");
+		this.dao.delete("CABD");
 		System.out.println(this.dao.findAll());
+		System.out.println(this.repop.findAll());
+
 	}
 
 }

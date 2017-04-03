@@ -1,4 +1,4 @@
-package dta.pizzeria.stock.controllers;
+package dta.pizzeria.stock.boot.controllers;
 
 import java.util.*;
 
@@ -8,11 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import dta.pizzeria.stock.model.Ingredient;
-import dta.pizzeria.stock.repositories.IngredientRepository;
+import dta.pizzeria.stock.boot.model.Ingredient;
+import dta.pizzeria.stock.boot.repositories.IngredientRepository;
 
 @Controller
-@RequestMapping("/ingredient")
+@RequestMapping("ingredients")
 public class IngredientController {
 	@Autowired private IngredientRepository repo;
 
@@ -41,6 +41,6 @@ public class IngredientController {
 	@RequestMapping(method = RequestMethod.POST, value = "{id}")
 	public String submitForm(@ModelAttribute("ingredient") Ingredient ing, @PathVariable("id") Integer id) {
 		this.repo.updateById(id, ing);
-		return "redirect:/mvc/ingredient";
+		return "redirect:/ingredients";
 	}
 }

@@ -17,7 +17,6 @@
 			<div class="table-responsive">
 				<table class="table table-striped">
 					<tr>
-						<th>ID</th>
 						<th>Nom</th>
 						<th>Prix</th>
 						<th>quantité</th>
@@ -28,8 +27,7 @@
 						<th></th>
 					</tr>
 					<c:forEach var="ingredient" items="${ingredients}">
-						<tr>
-							<td>${ingredient.id}</td>						
+						<tr>						
 							<td>${ingredient.nom}</td>
 							<td>${ingredient.prix}</td>
 							<td>${ingredient.quantite}</td>

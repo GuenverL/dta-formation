@@ -5,13 +5,18 @@ export const AlertModule = angular.module('alert.module', [])
 .service('AlertService', class AlertService {
     constructor($timeout) {
         this.alert = {
-            message: ''
+            succMessage: '',
+            errMessage: ''
         }
         this.$timeout = $timeout;
     }
-    addAlert(message) {
-        this.alert.message = message;
-        this.$timeout(3000).then(() => this.alert.message = '');
+    addSuccess(message) {
+        this.alert.succMessage = message;
+        this.$timeout(3000).then(() => this.alert.succMessage = '');
+    }
+    addError(message) {
+        this.alert.errMessage = message;
+        this.$timeout(3000).then(() => this.alert.errMessage = '');
     }
 })
 .controller('AlertController', class AlertController {

@@ -10,8 +10,11 @@
     <body ng-app="app">
         <div class="container" ng-controller="AlertController as ac">
 
-            <div ng-if="ac.alert.message" class="alert alert-danger" role="alert">
-                {{ ac.alert.message }}
+            <div ng-if="ac.alert.succMessage" class="alert alert-success" role="alert">
+                {{ ac.alert.succMessage }}
+            </div>
+            <div ng-if="ac.alert.errmessage" class="alert alert-danger" role="alert">
+                {{ ac.alert.errMessage }}
             </div>
 
             <ul class="nav nav-pills nav-tabs">

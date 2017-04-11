@@ -8,13 +8,11 @@ export class UserController {
     }
 
     save(userForm) {
-        console.log('save')
         if (userForm.$valid) {
             this.UsersService.saveUser(this.user)
-                .then(() => this.AlertService.addAlert('SAVED'))
-                .then(()=>{
-                    this.$location.path('/users')
-                })
+                .then(() => this.AlertService.addSuccess('SAVED'))
+                .then(()=>this.$location.path('/users'))
+                .catch(()=>this.AlertService.addError('ERROR'))
         }
     }
 

@@ -1,0 +1,28 @@
+<table class="table table-striped">
+    <thead><h2>Liste</h2>
+    </thead>
+    <tbody>
+        <tr>
+            <th ng-click="sortBy = 'name'; reverse=!reverse">Nom</th>
+            <th ng-click="sortBy = 'email'; reverse=!reverse">Mail</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="user in uc.users| filter:query|orderBy:sortBy:reverse | limitTo: uc.size track by $index">
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td><a ng-href="/user/{{user.id}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
+            <td><a ng-href="/user/del/{{user.id}}"><span class="glyphicon glyphicon-remove"></span></a></td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">
+                <button ng-click="uc.size=3" class="btn">Afficher 3 items</button>
+                <button ng-click="uc.size=5" class="btn">Afficher 5 items</button>
+                <button ng-click="uc.size=100" class="btn">Afficher tout</button>
+                <a ng-href="/user" class="btn btn-success">Ajouter<span class="glyphicon glyphicon-plus pull-right"></span></a>
+            </td>
+        </tr>
+    </tfoot>
+</table>

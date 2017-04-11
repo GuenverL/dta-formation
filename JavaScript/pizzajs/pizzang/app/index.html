@@ -1,0 +1,31 @@
+<!DOCTYPE HTML">
+<html>
+    <head>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>AngularJS</title>
+        <base href="/">
+    </head>
+
+    <body ng-app="app">
+        <div class="container" ng-controller="AlertController as ac">
+
+            <div ng-if="ac.alert.message" class="alert alert-danger" role="alert">
+                {{ ac.alert.message }}
+            </div>
+
+            <ul class="nav nav-pills nav-tabs">
+                <li role="presentation" ng-class="{active:uc.nav===1}"><a ng-click="uc.nav=1" href="/">Home</a></li>
+                <li role="presentation" ng-class="{active:uc.nav===2}"><a ng-click="uc.nav=2" href="/users">Users</a></li>
+                <li role="presentation" ng-class="{active:uc.nav===3}"><a ng-click="uc.nav=3" href="/about/hello">About</a></li>
+            </ul>
+
+                <div ng-view></div>
+
+
+        </div>
+    </body>
+    <script src="/bundle.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</html>

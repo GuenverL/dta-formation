@@ -1,0 +1,97 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "name": "Regina",
+      "toppings": [
+        "Jambon",
+        "Fromage",
+        "Champignon"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "3 fromages",
+      "toppings": [
+        "Mozzarella",
+        "Chèvre",
+        "Bleu"
+      ]
+    },
+    {
+      "name": "Pepperoni",
+      "toppings": [
+        "Pepperoni",
+        "Fromage",
+        "Poivron"
+      ],
+      "id": 3
+    },
+    {
+      "name": "Saumonette",
+      "toppings": [
+        "Saumon",
+        "Crème fraîche",
+        "Poireau"
+      ],
+      "id": 4
+    }
+  ],
+  "pizzas": [
+    {
+      "recipe": "Saumonette",
+      "toppings": [],
+      "id": 1
+    },
+    {
+      "recipe": "3 fromages",
+      "toppings": [],
+      "id": 2
+    },
+    {
+      "recipe": "Pepperoni",
+      "toppings": [],
+      "id": 3
+    },
+    {
+      "recipe": "Pepperoni",
+      "toppings": [],
+      "id": 4
+    },
+    {
+      "recipe": "3 fromages",
+      "toppings": [],
+      "id": 5
+    },
+    {
+      "recipe": "Pepperoni",
+      "toppings": [],
+      "id": 6
+    },
+    {
+      "recipe": "Regina",
+      "toppings": [],
+      "id": 7
+    },
+    {
+      "recipe": "Pepperoni",
+      "toppings": [],
+      "id": 8
+    },
+    {
+      "recipe": "Pepperoni",
+      "toppings": [],
+      "id": 9
+    },
+    {
+      "recipe": "Saumonette",
+      "toppings": [],
+      "id": 10
+    },
+    {
+      "recipe": "3 fromages",
+      "toppings": [],
+      "id": 11
+    }
+  ]
+}

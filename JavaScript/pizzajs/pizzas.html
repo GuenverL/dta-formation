@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <title>javascript preview: W2237694.HTML
+        </title>
+    </head>
+    <body>
+        <div class='container'>
+            <h1>Recettes</h1>
+            <div class='form-group'>
+                <input type='text' class='form-control' id='input'>
+                <button class='btn btn-success' id='button' >ajouter recette</button>
+            </div>
+            <div class='table-responsive'>
+                <table class="table table-striped" >
+                    <thead>
+                        <th>Nom des recettes</th>
+                    </thead>
+                    <tbody id="recipes">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+
+
+<script type="text/javascript">
+let p1 ={recipe:'Regina',toppings:['jambon','fromage','champignon']}
+
+
+let findRecipe = function (recipeName){return recipes.find(recipe=>recipe.name===recipeName)}
+
+getStatus = function(pizza){
+    let recipe = findRecipe(pizza.recipe)
+    if(!recipe)
+        return'wrong'
+    let res = recipe.toppings.reduce((acc,topping)=>{
+        let first = pizza.toppings.indexOf(topping)
+        let last = pizza.toppings.lastIndexOf(topping)
+        if( first!==-1 && first===last)
+            acc.ok++
+        else
+            acc.ko++
+        return acc
+    },{ok:0,ko:0})
+    if(res.ok<pizza.toppings.length)
+        return'wrong'
+    else if(res.ko>0)
+        return'incomplete'
+    else
+        return 'complete'
+}
+
+let findStatus = function(status){
+    return pizzas.filter(pizza=>getStatus(pizza)===status)
+}
+
+let nbStatus = function(status){
+    return findStatus(status).length
+}
+
+let remove = function(pizza){
+    return pizzas.filter(p=>pizza.name!==p.name)
+}
+
+let pizzas = []
+let recipes = []
+fetch('http://10.1.0.136:3000/recipes').then(r=>r.json()).then(recipes=>recipes.forEach(addRecipe))
+
+pizzas.push(p1)
+
+let addRecipe = function(recipe){
+    let a = document.createElement('a')
+    a.innerHTML=recipe.name
+    a.setAttribute('onClick',"removeRecipe('"+recipe.name+"')")
+    let t = document.createElement('tr')
+    t.setAttribute('id',recipe.name)
+    document.getElementById('recipes').appendChild(t).appendChild(document.createElement('td')).appendChild(a)
+}
+
+
+
+let removeRecipe = function(name){
+    recipes = recipes.filter(r=>name!==r.name)
+    document.getElementById('recipes').removeChild(document.getElementById(name))
+}
+
+function addHandler(){
+    addRecipe({name:document.getElementById('input').value,toppings:[]})
+}
+
+function removeHandler(){
+    removeRecipe()
+}
+
+document.getElementById('button').addEventListener('click',addHandler,false)
+
+function doItLater(){
+    console.log('DOITLATER')
+}
+
+promiseTimeout(1000).then(doItLater)
+
+function promiseTimeout(time){
+    return new Promise(res=>
+        setTimeout(res,time)
+    )
+}
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</html>

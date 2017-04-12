@@ -25,6 +25,8 @@
   },
   "dependencies": {
     "angular": "^1.6.3",
-    "angular-route": "^1.6.3"
+    "angular-route": "^1.6.3",
+    "lodash": "^4.17.4",
+    "md5": "^2.2.1"
   }
 }

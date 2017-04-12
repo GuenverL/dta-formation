@@ -1,1 +1,51 @@
-<h1>WIP</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h1>Ingredients</h1>
+                </div>
+                <ul class="list-group">
+                    <dta-toppings toppings="pc.toppings" on-select="pc.addTopping($event)"></dta-toppings>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h1>Pizzas</h1>
+                </div>
+                <div class="panel panel-success" ng-if="pc.pizza && pc.pizza.status!=='complete'">
+                    <div class="panel-heading">
+                        {{pc.pizza.recipe}}
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="topping in pc.pizza.toppings track by $index">
+                            {{topping}}
+                        </li>
+                        <li class="list-group-item list-group-item-danger btn" ng-click="pc.viderPizza()">
+                            Annuler la commande
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="panel panel-success" ng-if="!pc.pizza">
+                    <div class="panel-heading">
+                        Choississez une commande
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h1>Commandes</h1>
+                </div>
+                <ul class="list-group">
+                    <dta-pizzas pizzas="pc.pizzas" on-select="pc.selectPizza($event)"></dta-pizzas>
+                </ul>
+            </div>
+        </div>
+    </div>
+<div>

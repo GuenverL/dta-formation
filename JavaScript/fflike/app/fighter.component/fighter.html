@@ -1,0 +1,30 @@
+<img
+    ng-if="$ctrl.life > 0"
+    ng-src="https://www.gravatar.com/avatar/{{ $ctrl.md5 }}"
+    alt="{{ $ctrl.email }}">
+
+<img
+    ng-if="$ctrl.life === 0"
+    src="/skull.png"
+    alt="{{ $ctrl.email }}">
+
+
+<p>
+    <i class="material-icons">favorite</i>
+    {{ $ctrl.life }}
+</p>
+
+<p>
+    <button
+        ng-if="$ctrl.mode === 'attack'"
+        ng-disabled="$ctrl.life === 0"
+        ng-click="$ctrl.fight()"
+        class="btn btn-success" type="button">Fight !</button>
+
+    <button
+        ng-if="$ctrl.mode === 'defense'"
+        ng-disabled="$ctrl.life === 0"
+        ng-click="$ctrl.suffer()"
+        class="btn btn-danger" type="button">Target</button>
+
+</p>

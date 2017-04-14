@@ -5,6 +5,7 @@ import {PlayController} from './controllers/play.controller'
 import {PlayService} from './services/play.service'
 import {RecipesController} from './controllers/recipes.controller'
 import {RecipesService} from './services/recipes.service'
+import {dtaToppings} from './pizzas.component'
 
 angular.module("app",[
     ngRoute
@@ -15,6 +16,7 @@ angular.module("app",[
 .service('RecipesService',RecipesService)
 .controller('RecipesController',RecipesController)
 .controller('PlayController',PlayController)
+.component('dtaToppings',dtaToppings)
 
 
 .config(function ($locationProvider,$routeProvider) {
@@ -38,16 +40,6 @@ angular.module("app",[
         })
 })
 
-.controller('ToppingsDirectiveController', function() {
-    this.click = (topping) => {
-        this.onSelect({
-            $event: topping
-        })
-    }
-})
-
-
-
 .controller('PizzasDirectiveController', function() {
     this.click = (pizza) => {
         this.onSelect({
@@ -61,8 +53,8 @@ angular.module("app",[
     return{
         restrict:"E",
         template:`
-                    <li class="list-group-item btn" ng-repeat="pizza in pdc.pizzas track by $index" ng-click="pdc.click(pizza)" ng-if="pizza.status!=='complete'">{{pizza.recipe}}</li>
-            <p ng-transclude></p>`,
+                    <button type="button" class="list-group-item" ng-class="{'list-group-item-danger disabled':pizza.status==='wrong'}" ng-repeat="pizza in pdc.pizzas track by $index" ng-click="pdc.click(pizza)" ng-if="pizza.status!=='complete'">{{pizza.recipe}}</button>
+           `,
 
         controller:'PizzasDirectiveController',
         controllerAs:'pdc',
@@ -76,22 +68,3 @@ angular.module("app",[
     }
 })
 
-.directive("dtaToppings",function(){
-    return{
-        restrict:"E",
-        template:`
-                    <li class="list-group-item btn" ng-repeat="topping in tdc.toppings track by $index" ng-click="tdc.click(topping)">
-                        {{topping}}
-                    </li>
-            `,
-
-        controller:'ToppingsDirectiveController',
-        controllerAs:'tdc',
-
-        bindToController: {
-            onSelect: '&',
-            toppings:'='
-        },
-        scope: {}
-    }
-})

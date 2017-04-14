@@ -1,0 +1,9 @@
+<team ng-repeat="team in $ctrl.teams track by $index"
+    name="team.name"
+    mode="team.mode"
+    fighters="team.fighters"
+    on-fight="$ctrl.setDamages($event)"
+    after-injured="$ctrl.attackEnd($event)"
+    damages="$ctrl.damages"
+>
+</team>

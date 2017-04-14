@@ -1,0 +1,16 @@
+<div class ="col-md-6">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h1>{{$ctrl.name}}</h1>
+        </div>
+        <div class="panel-body">
+            <fighter ng-repeat="fighter in $ctrl.fighters track by $index"
+                on-fight="$ctrl.setDamages($event)"
+                email="fighter.email"
+                mode="$ctrl.mode"
+                damages="$ctrl.damages"
+                life="fighter.life"
+                after-injured="$ctrl.attackEnd($event)"></fighter>
+        </div>
+    </div>
+</div>

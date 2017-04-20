@@ -1,30 +1,44 @@
-<img
-    ng-if="$ctrl.life > 0"
-    ng-src="https://www.gravatar.com/avatar/{{ $ctrl.md5 }}"
-    alt="{{ $ctrl.email }}">
+<div ng-class="{ active: $ctrl.active()  }">
+    <img ng-if="$ctrl.fighter.life > 0" ng-src="https://www.gravatar.com/avatar/{{ $ctrl.md5 }}?d=wavatar" alt="{{ $ctrl.fighter.email }}">
 
-<img
-    ng-if="$ctrl.life === 0"
-    src="/skull.png"
-    alt="{{ $ctrl.email }}">
+    <img ng-if="$ctrl.fighter.life === 0" src="/img/skull.svg" alt="{{ $ctrl.fighter.email }}">
 
+    <table>
+        <tr>
+            <td><img src="/img/hearts.svg"></td>
+            <td><img src="/img/potion-ball.svg"></td>
+            <td><img src="/img/gladius.svg"></td>
+        </tr>
+        <tr>
+            <td>{{ $ctrl.fighter.life }}/{{ $ctrl.fighter.maxLife }}</td>
+            <td>{{ $ctrl.fighter.mana }}/{{ $ctrl.fighter.maxMana }}</td>
+            <td>{{ $ctrl.fighter.attack }}</td>
+        </tr>
+    </table>
 
-<p>
-    <i class="material-icons">favorite</i>
-    {{ $ctrl.life }}
-</p>
+    <div>
 
-<p>
-    <button
-        ng-if="$ctrl.mode === 'attack'"
-        ng-disabled="$ctrl.life === 0"
-        ng-click="$ctrl.fight()"
-        class="btn btn-success" type="button">Fight !</button>
+        <div class="btn-group" ng-if="!$ctrl.isDefender()">
+            <button ng-disabled="!$ctrl.active()" ng-click="$ctrl.fight()" class="btn btn-primary" type="button">
+                <img src="/img/pointy-sword.svg">
+            </button>
+            <button ng-disabled="!$ctrl.active() || $ctrl.noMana()" ng-if="$ctrl.fighter.class==='dps'" ng-click="$ctrl.fight(true)" class="btn btn-primary" type="button">
+                <img src="/img/crossed-slashes.svg">
+            </button>
+            <button ng-disabled="!$ctrl.active() || $ctrl.noMana()" ng-if="$ctrl.fighter.class==='healer'" ng-click=" $ctrl.fight(true) " class="btn btn-primary " type="button ">
+                <img src="/img/heart-bottle.svg">
+            </button>
+            <button ng-disabled="!$ctrl.active() || $ctrl.noMana()" ng-if="$ctrl.fighter.class==='tank'" ng-click=" $ctrl.fight(true) " class="btn btn-primary " type="button ">
+                 <img src="/img/arrows-shield.svg">
+            </button>
+            <button ng-disabled="!$ctrl.active() || $ctrl.noMana()" ng-if="$ctrl.fighter.class==='boss'" ng-click="$ctrl.fight(true)" class="btn btn-primary" type="button">
+                <img src="/img/heavy-lightning.svg">
+            </button>
+        </div>
 
-    <button
-        ng-if="$ctrl.mode === 'defense'"
-        ng-disabled="$ctrl.life === 0"
-        ng-click="$ctrl.suffer()"
-        class="btn btn-danger" type="button">Target</button>
+        <button ng-if="$ctrl.isDefender() " ng-disabled="!$ctrl.FightService.waitingForTarget || $ctrl.isTank()" ng-click="$ctrl.suffer() " class="btn btn-primary " type="button ">
+            <img src="/img/crosshair.svg ">
+        </button>
 
-</p>
+    </div>
+</div>

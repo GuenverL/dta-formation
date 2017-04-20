@@ -10,25 +10,25 @@ export class FightService {
                     {
                         email: 'tmoyse@gmail.com',
                         life: 10,
-                        mana: 10,
+                        mana: 0,
                         attack: [3, 5],
                     },
                     {
                         email: 'delapouite@gmail.com',
                         life: 10,
-                        mana: 10,
+                        mana: 0,
                         attack: [3, 5],
                     },
                     {
                         email: 'naholyr@gmail.com',
                         life: 10,
-                        mana: 10,
+                        mana: 0,
                         attack: [3, 5],
                     }
                 ]
             },
             {
-                name: 'P. de code',
+                name: 'Bosses',
                 fighters: [
                     {
                         email: 'lehardy.david@live.fr',
@@ -61,8 +61,9 @@ export class FightService {
         this.updateMana();
         this.round++;
         this.attackers = this.getFighters().map(f => f.email);
-        if(this.round%2===1)
-                this.autoplay()
+        if(this.round%2===1){
+            this.autoplay()
+        }
     }
 
     getDamage(email) {
@@ -116,10 +117,28 @@ export class FightService {
     }
 
     autoAttack(random){
-        if(random)
-            this.resolveAttack([this.getRandomFighter()])
-        else
-            this.resolveAttack([this.getWeakFighter()])
+        let currentAttacker = this.getFighter(this.attackers[0])
+        if(currentAttacker.mana > 4){
+            this.globalAttack(currentAttacker)
+            console.log('KABOOM')
+        }
+        if(random){
+            let ran=this.getRandomFighter()
+            if(ran){
+                this.resolveAttack([ran])
+            }else{
+                this.nextRound();
+                console.log('PERDU')
+            }
+        }else{
+            let weak=this.getWeakFighter()
+            if(weak){
+                this.resolveAttack([weak])
+            }else{
+                this.nextRound();
+                console.log('PERDU')
+            }
+        }
     }
 
     getWeakFighter(){
